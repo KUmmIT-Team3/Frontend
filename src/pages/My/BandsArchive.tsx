@@ -2,8 +2,8 @@ import React from "react";
 
 const BandsArchive = () => {
   return (
-    <div className="relative mb-[30px] w-[365px] h-[228px] mx-auto ">
-      <div className="absolute bg-white rounded-2xl shadow-md p-4 space-y-3">
+    <div className="mb-[30px] w-[365px] h-[228px] mx-auto ">
+      <div className=" bg-white rounded-2xl shadow-md p-4 space-y-3">
         <div className="flex">
           <img
             src="/icons/box.svg"
