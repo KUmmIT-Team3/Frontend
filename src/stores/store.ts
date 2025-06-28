@@ -47,15 +47,3 @@ interface MyCreatedBandState {
   myCreatedBand: MyCreatedBandInfo | null;
   fetchMyCreatedBand: (memberId: number) => Promise<void>;
 }
-
-export const useMyCreatedBandStore = create<MyCreatedBandState>((set) => ({
-  myCreatedBand: null,
-  fetchMyCreatedBand: async (memberId: number) => {
-    try {
-      const data = await fetchMyCreatedBand(memberId);
-      set({ myCreatedBand: data });
-    } catch (error) {
-      console.error("마이 밴드 불러오기 실패", error);
-    }
-  },
-}));
