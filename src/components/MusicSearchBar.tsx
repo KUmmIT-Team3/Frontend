@@ -1,7 +1,22 @@
 import { useState, useRef } from "react";
 import { getTopEmotionBands } from "../apis/createpage";
 
-const MusicSearchBar = () => {
+type Music = {
+  artworkUrl100: string;
+  previewUrl: string;
+  trackName: string;
+  artistName: string;
+};
+
+type MusicSearchBarProps = {
+  selectedMusic: string | null;
+  setSelectedMusic: React.Dispatch<React.SetStateAction<string | null>>;
+};
+
+const MusicSearchBar = ({
+  selectedMusic,
+  setSelectedMusic,
+}: MusicSearchBarProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [musics, setMusics] = useState<Music[]>([]);
   const [currentPlaying, setCurrentPlaying] = useState<string | null>(null);
@@ -19,13 +34,6 @@ const MusicSearchBar = () => {
       audio.pause();
       setCurrentPlaying(null);
     }
-  };
-
-  type Music = {
-    artworkUrl100: string;
-    previewUrl: string;
-    trackName: string;
-    artistName: string;
   };
 
   const handleSearch = async () => {
@@ -54,24 +62,24 @@ const MusicSearchBar = () => {
         {musics.map((music, index) => (
           <div
             key={index}
-            className="flex items-center justify-between p-2  rounded-lg shadow-sm"
+            className="flex items-center justify-between p-2 rounded-lg shadow-sm"
           >
             <div className="flex items-center gap-3">
-              <div key={index}>
+              <div>
                 <img
                   className="w-10 h-10 object-cover cursor-pointer"
                   src={music.artworkUrl100}
                   onClick={() => togglePlay(index, music.previewUrl)}
                 />
                 <audio
-                  ref={(el: HTMLAudioElement | null) => {
+                  ref={(el) => {
                     audioRefs.current[index] = el;
                   }}
                   src={music.previewUrl}
                 />
               </div>
               <div className="flex flex-col gap-[7px]">
-                <div className="text-black text-xs font-semibold leading-none tracking-wide">
+                <div className="text-black text-xs font-semibold leading-none tracking-wide mr-1">
                   {music.trackName}
                 </div>
                 <div className="text-neutral-400 text-[10px] font-normal leading-none tracking-wide">
@@ -79,7 +87,14 @@ const MusicSearchBar = () => {
                 </div>
               </div>
             </div>
-            <button className="w-10 h-[30px]  bg-[#C77EB5] text-[14px] text-white rounded-lg cursor-pointer">
+            <button
+              className={`w-10 h-[30px] text-[14px] rounded-lg cursor-pointer ${
+                selectedMusic === music.trackName
+                  ? "bg-[#9a4f86] text-white"
+                  : "bg-[#C77EB5] text-white"
+              }`}
+              onClick={() => setSelectedMusic(music.trackName)}
+            >
               추가
             </button>
           </div>
