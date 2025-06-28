@@ -20,6 +20,7 @@ const MusicSearchBar = ({
   const [searchTerm, setSearchTerm] = useState("");
   const [musics, setMusics] = useState<Music[]>([]);
   const [currentPlaying, setCurrentPlaying] = useState<string | null>(null);
+  const [height, setHeight] = useState(80);
   const audioRefs = useRef<Record<number, HTMLAudioElement | null>>({});
 
   const togglePlay = (index: number, previewUrl: string) => {
@@ -45,10 +46,15 @@ const MusicSearchBar = ({
   const handleSearch = async () => {
     const data = await getTopEmotionBands({ query: searchTerm });
     setMusics(data.musics);
+    setHeight(500);
   };
 
   return (
-    <div className="w-[360px] h-[500px] flex flex-col bg-white px-[12px] py-[20px] gap-[15px] rounded-2xl shadow-md overflow-y-scroll">
+    <div
+      className={`w-[360px] ${
+        height === 80 ? "h-[80px]" : "h-[500px]"
+      } flex flex-col bg-white px-[12px] py-[20px] gap-[15px] rounded-2xl shadow-md overflow-y-scroll`}
+    >
       <div className="flex items-center gap-[10px]">
         <input
           className="w-[281px] h-[40px] border border-[#D9D9D9] rounded-lg px-3 py-1 text-[14px] focus:outline-none focus:border-[#979797]"
@@ -58,7 +64,7 @@ const MusicSearchBar = ({
           onKeyDown={KeyDown}
         />
         <div
-          className="w-10 h-10 bg-[#C77EB5] rounded-lg inline-flex justify-center items-center cursor-pointer"
+          className="w-10 h-10 bg-[#F9906F] rounded-lg inline-flex justify-center items-center cursor-pointer"
           onClick={handleSearch}
         >
           <img src="/icons/search.svg" />
@@ -97,8 +103,8 @@ const MusicSearchBar = ({
             <button
               className={`w-10 h-[30px] text-[14px] rounded-lg cursor-pointer ${
                 selectedMusic === music
-                  ? "bg-[#9a4f86] text-white"
-                  : "bg-[#C77EB5] text-white"
+                  ? "bg-[#c76c51] text-white"
+                  : "bg-[#F9906F] text-white"
               }`}
               onClick={() => setSelectedMusic(music)}
             >
