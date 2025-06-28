@@ -19,6 +19,7 @@ const EmotionBand = ({
     peopleCount,
     songCount,
     commentCount,
+    songs,
     liked }: bands) => {
     const navigate = useNavigate();
     const handleClick = () => {
@@ -59,8 +60,10 @@ const EmotionBand = ({
                 </div>
 
                 <div className="pt-2 pd-2">
-                    <SongInfo albumImg={"img"} title={"title"} singer={"singer"} />
-                    <SongInfo albumImg={"img"} title={"title"} singer={"singer"} />
+                    {songs !== undefined && songs.map((song) => {
+                        return <SongInfo albumImg={song.albumImageLink} title={song.title} singer={song.artist} />
+                    })}
+                    {/* <SongInfo albumImg={"img"} title={"title"} singer={"singer"} /> */}
                 </div>
 
                 <div className="self-stretch h-0 bg-zinc-300 outline-1 outline-offset-[-0.50px] outline-zinc-300/50 mb-2"></div>

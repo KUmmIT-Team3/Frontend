@@ -73,7 +73,7 @@ const DetailBandPage = () => {
 
     return (
         <div className="max-w-[412px] h-[917px] mx-auto  bg-[#E1E7EC]">
-            <UpperNavBar isCanBack={true} text={bandDetail?.emotion || "감정"} />
+            <UpperNavBar isCanBack={true} text={bandDetail?.emotion || "감정"} isLogo={false} />
             <div className="flex flex-col h-[853px] items-center">
                 {
                     bandDetail !== undefined && <BandIntro {...bandDetail} />
@@ -132,30 +132,10 @@ const DetailBandPage = () => {
 
             </div>
 
-            <div className="justify-start text-cyan-800 text-base font-normal font-['Inter'] leading-none">
-              보관
-            </div>
-          </div>
+            <DoomsDayNotifier endTime={bandDetail?.endTime} />
         </div>
 
-        {isArchived && <ArchiveNotifier />}
-
-        {isMusicBar && <MusicSearchBar />}
-
-        {isCommentBar
-          ? bandDetail?.comments !== undefined && (
-              <CommentBar comments={bandDetail?.comments} />
-            )
-          : null}
-        {/* {bandDetail?.comments !== undefined && <CommentBar comments={bandDetail?.comments} />} */}
-
-        {bandDetail?.songs !== undefined && (
-          <BandPlayList songs={bandDetail?.songs} />
-        )}
-      </div>
-      <DoomsDayNotifier endTime={bandDetail?.endTime} />
-    </div>
-  );
+    )
 };
 
 export default DetailBandPage;
