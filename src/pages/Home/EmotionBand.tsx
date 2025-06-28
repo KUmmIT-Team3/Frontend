@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 import type { bands } from "../../types/type";
 import BandInfo from "./BandInfo"
 import EmotionName from "./EmotionName";
@@ -11,6 +12,7 @@ import SongInfo from "./SongInfo"
 // #ED6956
 
 const EmotionBand = ({
+    id,
     creatorName,
     emotion,
     description, endTime, likeCount,
@@ -18,6 +20,10 @@ const EmotionBand = ({
     songCount,
     commentCount,
     liked }: bands) => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate(`/detail/${id}`)
+    }
 
     const calEndTime = (dateString: string): string => {
         const date = new Date(dateString);
@@ -40,7 +46,7 @@ const EmotionBand = ({
             <EmotionName emotion={emotion} />
 
             <div className="flex flex-col w-68">
-                <div className="flex justify-between">
+                <div className="flex justify-between" onClick={handleClick}>
                     <div className="self-stretch justify-start text-neutral-400 text-xs font-medium font-['Roboto'] leading-none tracking-wide">by {creatorName}</div>
                     <div className="flex">
                         <img src="/icons/Time-Circle.svg" alt="시계 아이콘" />
