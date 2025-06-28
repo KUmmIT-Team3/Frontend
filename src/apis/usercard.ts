@@ -1,16 +1,16 @@
 import axios from "axios";
 import type { UserSummary } from "../types/type";
 
-export const getUserSummary = async () => {
-  const response = await axios.get(
+export const getUserSummary = async (): Promise<UserSummary> => {
+  const res = await axios.get<UserSummary>(
     "http://144.24.81.195:8080/api/member/profile",
     {
       params: {
-        memberId: 1, // 여기에 실제 로그인된 사용자 ID를 넣어야 함
+        memberId: localStorage.getItem("memberId") || "0",
       },
     }
   );
-  return response.data;
+  return res.data;
 };
 
 export const fetchUserSummary = async (
