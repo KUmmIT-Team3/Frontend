@@ -1,5 +1,3 @@
-import React from "react";
-
 const BandsArchive = () => {
   return (
     <div className="mb-[30px] w-[365px] h-[228px] mx-auto ">

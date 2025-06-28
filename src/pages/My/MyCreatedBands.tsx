@@ -1,5 +1,3 @@
-import React from "react";
-
 const MyCreatedBands = () => {
   return (
     <div className="relative mb-[30px] w-[365px] h-[228px] mx-auto">

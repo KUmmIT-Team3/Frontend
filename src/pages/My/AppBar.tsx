@@ -1,5 +1,3 @@
-import React from "react";
-
 const AppBar = () => {
   return (
     <div className="flex h-[64px] ml-[4px] shadow-md items-center">
