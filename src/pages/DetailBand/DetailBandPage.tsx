@@ -32,10 +32,8 @@ const DetailBandPage = () => {
     const { id: bandId } = useParams<{ id: string }>();
     const memberId = parseInt(localStorage.getItem("memberId") || "0", 10);
 
-    // src/pages/DetailBandPage.tsx 의 fetchBandDetail 함수를 아래 코드로 교체하세요.
 
     const fetchBandDetail = async () => {
-        // --- 진단을 위한 상세 로그 ---
         console.group("데이터 로딩 사이클");
         console.log("1. useEffect가 fetchBandDetail 호출함");
         console.log("2. 현재 상태", { bandId, memberId });
@@ -53,11 +51,9 @@ const DetailBandPage = () => {
             console.log("4. API 서버에 데이터 요청을 보냅니다...");
             const data = await getBandDetail(parseInt(bandId), memberId);
 
-            // ✨ 여기가 가장 중요합니다! 서버가 준 데이터의 실제 모양을 확인합니다.
             console.log("5. 서버로부터 받은 원본 데이터:", data);
             console.log("6. 받은 데이터의 타입:", typeof data);
 
-            // 만약 데이터가 객체라면, 더 자세히 확인합니다.
             if (typeof data === 'object' && data !== null) {
                 console.log("7. 데이터의 키(key) 목록:", Object.keys(data));
             }
@@ -75,12 +71,10 @@ const DetailBandPage = () => {
         }
     };
 
-    // useEffect는 그대로 두시면 됩니다.
     useEffect(() => {
         fetchBandDetail();
     }, [bandId]);
 
-    // '좋아요' 핸들러 추가
     const handleToggleLike = async () => {
         if (!bandDetail) return;
         await toggleLike(bandDetail.id, memberId);
@@ -100,7 +94,7 @@ const DetailBandPage = () => {
 
     // --- 데이터가 준비된 후의 렌더링 ---
     return (
-        <div className="max-w-[412px] h-[917px] mx-auto bg-[#E1E7EC]">
+        <div className="relative max-w-[412px] h-[917px] mx-auto bg-[#E1E7EC]">
             {/* 수정: 가드 클로즈 덕분에 더 이상 ?. 나 || 연산자가 필요 없음 */}
             <UpperNavBar isCanBack={true} text={bandDetail.emotion} isLogo={false} />
             <div className="flex flex-col h-[853px] items-center">
