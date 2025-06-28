@@ -54,7 +54,7 @@ const CreateBandPage2 = () => {
   return (
     <div className="flex justify-center">
       <div className="w-[412px] h-[917px] bg-[#F3EEEF]">
-        <UpperNavBar isCanBack={true} text="감정 밴드 생성" />
+        <UpperNavBar isCanBack={true} text="감정 밴드 만들기" isLogo={false} />
         <div className="flex justify-center mt-1 mx-[2px] gap-[5px] ">
           <p className="w-[400px] h-1 bg-[#C77EB5] rounded-lg"></p>
         </div>
