@@ -6,22 +6,34 @@ type SearchMusic = {
 
 export const getTopEmotionBands = async (searchMusic: SearchMusic) => {
   const res = await axios.get(
-    `http://144.24.81.195:8080/api/music/search?query=${encodeURIComponent(
-      searchMusic.query
-    )}`
+    `http://144.24.81.195:8080/api/music/search?query=${searchMusic.query}`
   );
 
   return res.data;
 };
 
-// type Name = {
-//   query: string;
-// };
+type Song = {
+  title: string;
+  artist: string;
+  albumImageLink: string;
+  previewLink: string;
+};
 
-// export const getTopEmotionBands = async (name: Name) => {
-//   const res = await axios.post("http://144.24.81.195:8080/api/member/login", {
-//     name: name.query,
-//   });
+type CreateBandRequest = {
+  emotion: string;
+  description: string;
+  song: Song;
+};
 
-//   return res.data;
-// };
+type memberIdType = string | number;
+
+export const createBand = async (
+  band: CreateBandRequest,
+  memberId: memberIdType
+) => {
+  const res = await axios.post(
+    `http://144.24.81.195:8080/api/emotion-bands?memberId=1`,
+    band
+  );
+  return res.data;
+};
