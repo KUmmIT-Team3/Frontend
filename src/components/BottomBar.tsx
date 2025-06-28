@@ -1,5 +1,5 @@
-import { useLocation } from "react-router-dom"
-import BottomBarItem from "./BottomBarItem"
+import { useLocation } from "react-router-dom";
+import BottomBarItem from "./BottomBarItem";
 import { useEffect, useState } from "react";
 
 const BottomBar = () => {
@@ -38,4 +38,4 @@ const BottomBar = () => {
     )
 }
 
-export default BottomBar
+export default BottomBar;
