@@ -5,7 +5,68 @@ export const getbandsDetail = (bandId: number) => axios.get(`http://144.24.81.19
     console.log(Response.data)
     return Response.data;
   })
-  .catch(error => console.error(error));
+  .catch(error => {
+    console.error(error);
+    throw error;
+  });
+
+export const getComments = async (emotionBandId: number): Promise<Comment[]> => {
+  try {
+    const response = await axios.get<Comment[]>(`http://144.24.81.195:8080/api/emotion-bands/${emotionBandId}/comment`);
+    return response.data;
+  } catch (error) {
+    console.error('댓글 목록 조회 실패:', error);
+    throw error;
+  }
+}
+
+/*
+데이터 예시
+[
+  {
+    "id": 0,
+    "creatorName": "string",
+    "comment": "string"
+  }
+]
+*/
+
+
+export const postComments = (emotionBandId: number, comment: string) => {
+
+  const payload = {
+    comment: comment,
+  };
+
+  return axios.post(`http://144.24.81.195:8080/api/emotion-bands/${emotionBandId}/comments`, payload)
+    .then(response => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch(error => {
+      console.error('댓글 작성 실패:', error);
+      throw error;
+    });
+}
+
+export const archiveBand = (emotionBandId: number, memberId: number) => {
+
+  const payload = {
+    memberId: memberId,
+  };
+
+  return axios.post(`http://144.24.81.195:8080/api/emotion-bands/${emotionBandId}/archive`, payload)
+    .then(response => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch(error => {
+      console.error('아카이브 실패:', error);
+      throw error;
+    });
+}
+
+
 
 export const dummyBandsDetail = () => {
   const dummyData = {
@@ -60,7 +121,6 @@ export const dummyBandsDetail = () => {
 
   return dummyData;
 }
-
 
 /*
 {

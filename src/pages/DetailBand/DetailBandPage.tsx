@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import UpperNavBar from "../../components/UpperNavBar";
 import type { BandDetail } from "../../types/type";
-import { dummyBandsDetail, getbandsDetail } from "../../apis/detailpage";
+import { archiveBand, getbandsDetail } from "../../apis/detailpage";
 import { useLocation } from "react-router-dom";
 import DoomsDayNotifier from "./DoomsDayNotifier";
 import BandIntro from "./BandIntro";
@@ -20,26 +20,49 @@ const DetailBandPage = () => {
 
     const location = useLocation();
 
-    const getDetailData = async (id: number) => {
+    // const getDetailData = async (id: number) => {
+    //     try {
+    //         const detailData = await getbandsDetail(id);
+    //         setBandDetail(detailData);
+    //     } catch (error) {
+    //         console.error("데이터를 불러오는 데 실패했습니다:", error);
+    //     }
+    // };
+
+    const fetchBandDetail = async (bandId: number) => {
         try {
-            const detailData = await getbandsDetail(id);
-            setBandDetail(detailData);
+            const data = await getbandsDetail(bandId);
+            setBandDetail(data); // 성공 시 전체 데이터를 상태에 저장
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+    const handleArchive = async (bandId, memberId) => {
+        try {
+            await archiveBand(bandId, memberId);
+            setIsArchived(!isArchived)
+
         } catch (error) {
-            console.error("데이터를 불러오는 데 실패했습니다:", error);
+            console.error(error)
+            alert('댓글 등록에 실패했습니다. 다시 시도해주세요.');
+
         }
     };
 
     useEffect(() => {
         //서버 요청
-        // const pathId = location.pathname;
-        // if (pathId.includes('/detail/')) {
-        //     const id = pathId.replace('/detail/', '')
-        //     getDetailData(parseInt(id))
-        // }
+        const pathId = location.pathname;
+        if (pathId.includes('/detail/')) {
+            const id = pathId.replace('/detail/', '')
+            // getDetailData(parseInt(id))
+            fetchBandDetail(parseInt(id));
 
+        }
         //더미 처리
-        setBandDetail(dummyBandsDetail);
+        // setBandDetail(dummyBandsDetail);
     }, [location.pathname])
+
 
     return (
         <div className="max-w-[412px] h-[917px] mx-auto  bg-[#E1E7EC]">
@@ -73,9 +96,7 @@ const DetailBandPage = () => {
                     </div>
 
                     <div data-has-icon-end="false" data-has-icon-start="true" data-size="Medium" data-state="Default" data-variant="Primary"
-                        onClick={() => {
-                            setIsArchived(!isArchived)
-                        }}
+                        onClick={() => handleArchive(bandDetail?.id, localStorage)}
                         className="w-25 p-3 bg-[#ffffff] rounded-lg shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] outline-1 outline-offset-[-1px] outline-white inline-flex justify-center items-center gap-2 overflow-hidden">
                         <div className="w-4 h-4 relative">
                             <img src="/icons/Archive.svg" alt="보관" />
@@ -89,8 +110,9 @@ const DetailBandPage = () => {
 
                 {isMusicBar && <MusicSearchBar />}
 
-                {isCommentBar ? bandDetail?.comments !== undefined && <CommentBar comments={bandDetail?.comments} /> : null}
-                {/* {bandDetail?.comments !== undefined && <CommentBar comments={bandDetail?.comments} />} */}
+                {isCommentBar ?
+                    bandDetail?.comments !== undefined &&
+                    <CommentBar comments={bandDetail?.comments} bandId={bandDetail.id} onCommentPosted={() => fetchBandDetail(bandDetail.id)} /> : null}
 
                 {bandDetail?.songs !== undefined && <BandPlayList songs={bandDetail?.songs} />}
 

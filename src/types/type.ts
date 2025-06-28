@@ -59,3 +59,7 @@ export interface BandPlayListProps {
     albumImageLink: string;
     previewLink: string;
 }
+
+export interface CommentPayload {
+    comment: string;
+}
