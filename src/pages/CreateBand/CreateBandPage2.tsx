@@ -56,7 +56,7 @@ const CreateBandPage2 = () => {
       <div className="w-[412px] h-[917px] bg-[#F3EEEF]">
         <UpperNavBar isCanBack={true} text="감정 밴드 만들기" isLogo={false} />
         <div className="flex justify-center mt-1 mx-[2px] gap-[5px] ">
-          <p className="w-[400px] h-1 bg-[#C77EB5] rounded-lg"></p>
+          <p className="w-[400px] h-1 bg-[#F9906F] rounded-lg"></p>
         </div>
         <div className="flex flex-col items-center relative">
           <p className="my-[43px] text-lg text-[16px]">
@@ -73,7 +73,7 @@ const CreateBandPage2 = () => {
             </button>
             <button
               className={`w-[172px] h-[40px] py-3 text-white rounded-[8px] flex items-center justify-center ${
-                music ? "cursor-pointer bg-[#C77EB5]" : "bg-[#dfb5d5]"
+                music ? "cursor-pointer bg-[#F9906F]" : "bg-[#f7b7a4]"
               }`}
               disabled={!music}
               onClick={() => {

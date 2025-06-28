@@ -42,3 +42,8 @@ export const useMyCreatedBandStore = create<MyCreatedBandState>((set) => ({
     }
   },
 }));
+
+interface MyCreatedBandState {
+  myCreatedBand: MyCreatedBandInfo | null;
+  fetchMyCreatedBand: (memberId: number) => Promise<void>;
+}
