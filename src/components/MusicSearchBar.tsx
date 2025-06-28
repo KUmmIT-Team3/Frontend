@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { getTopEmotionBands } from "../apis/createpage";
 
 const MusicSearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,8 +12,8 @@ const MusicSearchBar = () => {
   };
 
   const handleSearch = async () => {
-    const res = await axios.post("/api/music/search", { query: searchTerm });
-    setMusics(res.data.musics);
+    const data = await getTopEmotionBands({ query: searchTerm });
+    setMusics(data.musics);
   };
 
   return (
