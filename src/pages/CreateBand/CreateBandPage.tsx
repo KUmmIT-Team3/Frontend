@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const CreateBandPage = () => {
   const [selectedEmotion, setSelectedEmotion] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const [textareaValue, setTextareaValue] = useState("");
   const emotions = [
     "기쁨",
     "슬픔",
@@ -78,6 +79,7 @@ const CreateBandPage = () => {
                 <textarea
                   className="w-[293px] h-[86px] border ml-[5px] font-['Work_Sans'] border-[#D9D9D9] rounded-lg px-3 py-1 text-[14px] focus:outline-none focus:border-[#979797]"
                   placeholder="지금 느끼는 감정에 대해 간단히 설명해 주세요.예: 오늘 비가 와서 문득 떠오른 사람이 있어요..."
+                  onChange={(e) => setTextareaValue(e.target.value)}
                 ></textarea>
               </>
             )}
@@ -89,7 +91,9 @@ const CreateBandPage = () => {
             }`}
             disabled={!selectedEmotion}
             onClick={() =>
-              navigate("/addmusic", { state: { selectedEmotion } })
+              navigate("/addmusic", {
+                state: { selectedEmotion, textareaValue },
+              })
             }
           >
             다음 단계

@@ -9,8 +9,8 @@ type Music = {
 };
 
 type MusicSearchBarProps = {
-  selectedMusic: string | null;
-  setSelectedMusic: React.Dispatch<React.SetStateAction<string | null>>;
+  selectedMusic: Music | null;
+  setSelectedMusic: React.Dispatch<React.SetStateAction<Music | null>>;
 };
 
 const MusicSearchBar = ({
@@ -36,6 +36,12 @@ const MusicSearchBar = ({
     }
   };
 
+  const KeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   const handleSearch = async () => {
     const data = await getTopEmotionBands({ query: searchTerm });
     setMusics(data.musics);
@@ -49,6 +55,7 @@ const MusicSearchBar = ({
           placeholder="곡명, 아티스트명 검색"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          onKeyDown={KeyDown}
         />
         <div
           className="w-10 h-10 bg-[#C77EB5] rounded-lg inline-flex justify-center items-center cursor-pointer"
@@ -89,11 +96,11 @@ const MusicSearchBar = ({
             </div>
             <button
               className={`w-10 h-[30px] text-[14px] rounded-lg cursor-pointer ${
-                selectedMusic === music.trackName
+                selectedMusic === music
                   ? "bg-[#9a4f86] text-white"
                   : "bg-[#C77EB5] text-white"
               }`}
-              onClick={() => setSelectedMusic(music.trackName)}
+              onClick={() => setSelectedMusic(music)}
             >
               추가
             </button>

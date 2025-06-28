@@ -7,10 +7,16 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
 
+  const KeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && name) {
+      handleClick();
+    }
+  };
+
   const handleClick = async () => {
     try {
       const res = await PostLogin({ query: name });
-      localStorage.setItem("memberId", JSON.stringify(res));
+      localStorage.setItem("memberId", String(res.memberId));
       navigate("/home");
     } catch (error: unknown) {
       if (axios.isAxiosError(error) && error.response?.status === 401) {
@@ -37,6 +43,7 @@ const LoginPage = () => {
         <input
           className="mb-[70px] h-[50px] w-[362px] px-4 py-2 bg-white rounded-lg shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] "
           onChange={(e) => setName(e.target.value)}
+          onKeyDown={KeyDown}
         ></input>
         <button
           className={name ? "cursor-pointer" : ""}
