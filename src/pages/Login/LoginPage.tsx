@@ -50,9 +50,7 @@ const LoginPage = () => {
           disabled={!name}
           onClick={handleClick}
         >
-          <img
-            src={name ? "./icons/login.svg" : "./icons/disabled_login.svg"}
-          />
+          <img src={name ? "/icons/login.svg" : "/icons/disabled_login.svg"} />
         </button>
       </div>
     </div>

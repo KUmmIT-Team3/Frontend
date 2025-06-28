@@ -23,13 +23,13 @@ const CreateBandPage = () => {
   return (
     <div className="flex justify-center">
       <div className="w-[412px] h-[917px] bg-[#F3EEEF]">
-        <UpperNavBar isCanBack={true} text="감정 밴드 만들기" />
+        <UpperNavBar isCanBack={true} text="감정 밴드 만들기" isLogo={false} />
         <div className="flex justify-center mt-1 mx-[2px] gap-[5px]">
           <p className="w-[195px] h-1 bg-[#C77EB5] rounded-lg"></p>
           <p className="w-[195px] h-1 bg-[#D9D9D9] rounded-lg"></p>
         </div>
         <div className="flex items-center mb-6 pt-[38px]">
-          <img src="./icons/pencil.svg" className="ml-[59px] w-6 h-6 " />
+          <img src="/icons/pencil.svg" className="ml-[59px] w-6 h-6 " />
           <span className="ml-[19px] text-lg text-[16px]">
             지금 느끼는 감정을 선택해 주세요
           </span>

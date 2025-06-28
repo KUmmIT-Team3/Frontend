@@ -32,7 +32,7 @@ const HomePage = () => {
   return (
     // <div>
     <div className="max-w-[412px] h-[917px] mx-auto">
-      <UpperNavBar isCanBack={false} text="Emotion Band" />
+      <UpperNavBar isCanBack={false} text="" isLogo={true} />
       <div className="w-103 h-203 pl-6.5 pr-6.5 overflow-y-scroll bg-[#FBF6F7]">
         <CreateBandButton />
 

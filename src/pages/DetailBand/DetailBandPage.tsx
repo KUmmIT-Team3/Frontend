@@ -130,11 +130,32 @@ const DetailBandPage = () => {
 
                 {bandDetail?.songs !== undefined && <BandPlayList songs={bandDetail?.songs} />}
 
-
             </div>
-            <DoomsDayNotifier endTime={bandDetail?.endTime} />
-        </div >
-    )
-}
+
+            <div className="justify-start text-cyan-800 text-base font-normal font-['Inter'] leading-none">
+              보관
+            </div>
+          </div>
+        </div>
+
+        {isArchived && <ArchiveNotifier />}
+
+        {isMusicBar && <MusicSearchBar />}
+
+        {isCommentBar
+          ? bandDetail?.comments !== undefined && (
+              <CommentBar comments={bandDetail?.comments} />
+            )
+          : null}
+        {/* {bandDetail?.comments !== undefined && <CommentBar comments={bandDetail?.comments} />} */}
+
+        {bandDetail?.songs !== undefined && (
+          <BandPlayList songs={bandDetail?.songs} />
+        )}
+      </div>
+      <DoomsDayNotifier endTime={bandDetail?.endTime} />
+    </div>
+  );
+};
 
 export default DetailBandPage;
