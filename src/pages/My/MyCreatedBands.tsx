@@ -23,12 +23,12 @@ const MyCreatedBands = () => {
             </div>
             <div className="flex">
               <img
-                src="/icons/clock1.svg"
+                src="/icons/clock.svg"
                 alt="시계"
                 className="ml-[6px] w-[14px] h-[14px]"
               />
-              <span className="text-[10px] w-[106px] h-[15px] text-[#F9906F] ">
-                18시간 20분 남음
+              <span className="text-[10px] w-[106px] h-[15px] text-[#979797] ">
+                20시 30분 소멸
               </span>
             </div>
           </div>
@@ -86,6 +86,14 @@ const MyCreatedBands = () => {
                   24
                 </div>
               </div>
+            </div>
+            <div className="relative flex justify-between items-center w-[320px] h-[15px] mt-2">
+              <button className="absolute left-0">
+                <span className="text-[#979797] text-[10px]">이전</span>
+              </button>
+              <button className="absolute right-0">
+                <span className="text-[#979797] text-[10px]">다음</span>
+              </button>
             </div>
           </div>
         </div>
