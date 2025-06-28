@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import { getBandDetail, toggleArchive, toggleLike } from "/"; // 수정: toggleLike 추가
-// import type { BandDetail, Song } from ; // 수정: Song 타입도 import
 
 // 컴포넌트 import
 import UpperNavBar from "../../components/UpperNavBar";
@@ -31,29 +29,53 @@ const DetailBandPage = () => {
     const [error, setError] = useState<string | null>(null);
 
     const [bandDetail, setBandDetail] = useState<BandDetail | null>(null);
-    const { bandId } = useParams<{ bandId: string }>();
+    const { id: bandId } = useParams<{ id: string }>();
     const memberId = parseInt(localStorage.getItem("memberId") || "0", 10);
 
+    // src/pages/DetailBandPage.tsx 의 fetchBandDetail 함수를 아래 코드로 교체하세요.
+
     const fetchBandDetail = async () => {
+        // --- 진단을 위한 상세 로그 ---
+        console.group("데이터 로딩 사이클");
+        console.log("1. useEffect가 fetchBandDetail 호출함");
+        console.log("2. 현재 상태", { bandId, memberId });
+
         if (!bandId || !memberId) {
+            console.warn("3. bandId 또는 memberId가 유효하지 않아 요청을 중단합니다.");
+            console.groupEnd();
             setError("유효한 밴드 또는 사용자 정보가 없습니다.");
             setIsLoading(false);
             return;
         }
+
         try {
-            // 데이터 로딩 시작 전, 로딩 상태를 true로 설정
             setIsLoading(true);
+            console.log("4. API 서버에 데이터 요청을 보냅니다...");
             const data = await getBandDetail(parseInt(bandId), memberId);
+
+            // ✨ 여기가 가장 중요합니다! 서버가 준 데이터의 실제 모양을 확인합니다.
+            console.log("5. 서버로부터 받은 원본 데이터:", data);
+            console.log("6. 받은 데이터의 타입:", typeof data);
+
+            // 만약 데이터가 객체라면, 더 자세히 확인합니다.
+            if (typeof data === 'object' && data !== null) {
+                console.log("7. 데이터의 키(key) 목록:", Object.keys(data));
+            }
+
             setBandDetail(data);
+            console.log("8. setBandDetail(data) 호출 완료.");
+
         } catch (err) {
-            console.error(err);
+            console.error("X. CATCH 블록에서 에러 발생:", err);
             setError("데이터를 불러오는 중 오류가 발생했습니다.");
         } finally {
-            // 성공/실패 여부와 관계없이 로딩 상태를 false로 설정
             setIsLoading(false);
+            console.log("9. 로딩 상태 종료.");
+            console.groupEnd();
         }
     };
 
+    // useEffect는 그대로 두시면 됩니다.
     useEffect(() => {
         fetchBandDetail();
     }, [bandId]);
@@ -85,7 +107,6 @@ const DetailBandPage = () => {
                 <BandIntro {...bandDetail} />
                 <div className="w-[412px] flex justify-around pl-6 pr-6 mb-6">
 
-                    {/* '좋아요' 버튼 추가 */}
                     <button onClick={handleToggleLike} className="flex flex-col items-center">
                         <img src={bandDetail.liked ? "/icons/Heart-on.svg" : "/icons/Heart-off.svg"} alt="좋아요" />
                         <span>좋아요</span>
@@ -110,7 +131,6 @@ const DetailBandPage = () => {
                 {bandDetail.archived && <ArchiveNotifier />}
                 {isMusicBar && <MusicSearchBar selectedMusic={music} setSelectedMusic={setMusic} />}
 
-                {/* 수정: 더 간결해진 조건부 렌더링 */}
                 {isCommentBar && (
                     <CommentBar
                         comments={bandDetail.comments}
@@ -120,7 +140,6 @@ const DetailBandPage = () => {
                     />
                 )}
 
-                {/* BandPlayList의 props 타입 이름을 Song으로 통일했으므로, BandPlayList 내부도 수정이 필요할 수 있습니다. */}
                 <BandPlayList songs={bandDetail.songs as unknown as Song[]} />
             </div>
 
