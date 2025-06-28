@@ -30,18 +30,18 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="flex justify-center">
-      <div className="w-[412px] h-[917px] bg-[#F8F3F4]">
+    <div className="flex justify-center ">
+      <div className="w-[412px] h-[917px] bg-[#F8F3F4] ">
         <UpperNavBar isCanBack={false} text="" isLogo={true} />
-        <div className="w-103 flex flex-col justify-center items-center overflow-y-scroll bg-[#FBF6F7]">
+        <div className="w-103 flex flex-col justify-center items-center pb-10 overflow-y-scroll bg-[#FBF6F7]">
           <CreateBandButton />
 
-          <div className="mt-2.5">
+          <div className="mt-2.5 ">
             <div className="flex justify-between">
               <div className="justify-start text-black text-xl font-normal font-['Inter'] leading-normal">
                 지금 인기있는 감정 밴드
               </div>
-              <div className="w-12 h-6 px-2 py-1 bg-stone-300 rounded-[20px] inline-flex justify-center items-center gap-2.5">
+              <div className="w-12 h-6 px-2 py-1 bg-[#BCD8B2] rounded-[20px] inline-flex justify-center items-center gap-2.5">
                 <div className="justify-start text-stone-600 text-[11px] font-normal font-['SF_Pro'] leading-none">
                   실시간
                 </div>
@@ -66,7 +66,7 @@ const HomePage = () => {
                 전체 감정 밴드
               </div>
 
-              <div className="w-12 h-6 px-2 py-1 bg-stone-300 rounded-[20px] inline-flex justify-center items-center gap-2.5">
+              <div className="w-12 h-6 px-2 py-1 bg-[#BBE2E0] rounded-[20px] inline-flex justify-center items-center gap-2.5">
                 <div className="justify-start text-stone-600 text-[11px] font-normal font-['SF_Pro'] leading-none">
                   {topBands !== undefined ? topBands.popularBands.length : "~"}
                   개
