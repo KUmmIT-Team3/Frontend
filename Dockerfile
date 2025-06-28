@@ -1,5 +1,5 @@
-# 빌드
-FROM node:22 AS builder
+# 개발 환경
+FROM node:22
 
 WORKDIR /app
 
@@ -7,13 +7,9 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
-# 소스 코드 복사 및 빌드
+# 소스 코드 복사
 COPY . .
-RUN npm run build
 
-# 2단계: 정적 파일 서빙 (Nginx)
-FROM nginx:alpine
-COPY --from=builder /app/build /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# 개발 서버 실행 (포트 5173 사용)
+EXPOSE 5173
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

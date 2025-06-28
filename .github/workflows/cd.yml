@@ -48,4 +48,4 @@ jobs:
             docker pull $IMAGE_NAME
             docker stop reactapp || true
             docker rm reactapp || true
-            docker run -d --name reactapp -p 80:80 $IMAGE_NAME
+            docker run -d --name reactapp -p 80:5173 $IMAGE_NAME
