@@ -3,31 +3,32 @@ import BottomBar from "../../components/BottomBar";
 import UpperNavBar from "../../components/UpperNavBar";
 import CreateBandButton from "./CreateBandButton";
 import EmotionBand from "./EmotionBand";
-import { dummyTopEmotionBands } from "../../apis/home";
+import { getTopEmotionBands } from "../../apis/home";
 import type { bands, TopBands } from "../../types/type";
 
 const HomePage = () => {
-  const [topBands, setTopBands] = useState<TopBands>();
+    const [topBands, setTopBands] = useState<TopBands>();
 
-  //   const getBandsData = async () => {
-  //     try {
-  //       // 1. 비동기 함수를 호출하고, 데이터(결과)가 올 때까지 기다립니다.
-  //       const bandData = await getTopEmotionBands();
-  //       // 2. 받아온 최종 데이터(결과)를 상태로 설정합니다.
-  //       setTopBands(bandData);
-  //     } catch (error) {
-  //       console.error("데이터를 불러오는 데 실패했습니다:", error);
-  //     }
-  //   };
 
-  useEffect(() => {
-    //서버 요청
-    // getBandsData()
+  const getBandsData = async () => {
+        try {
+            // 1. 비동기 함수를 호출하고, 데이터(결과)가 올 때까지 기다립니다.
+            const bandData = await getTopEmotionBands();
+            // 2. 받아온 최종 데이터(결과)를 상태로 설정합니다.
+            setTopBands(bandData);
+        } catch (error) {
+            console.error("데이터를 불러오는 데 실패했습니다:", error);
+        }
+    };
 
-    //더미 처리
-    setTopBands(dummyTopEmotionBands);
-    console.log(topBands);
-  }, []);
+    useEffect(() => {
+        //서버 요청
+        getBandsData()
+
+        //더미 처리
+        // setTopBands(dummyTopEmotionBands);
+        console.log(topBands);
+    }, []);
 
   return (
     <div className="flex justify-center">
@@ -89,6 +90,7 @@ const HomePage = () => {
       </div>
     </div>
   );
+
 };
 
 export default HomePage;
