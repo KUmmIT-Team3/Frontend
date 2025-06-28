@@ -62,7 +62,6 @@ const DetailBandPage = () => {
         const pathId = location.pathname;
         if (pathId.includes('/detail/')) {
             const id = pathId.replace('/detail/', '')
-            // getDetailData(parseInt(id))
             fetchBandDetail(parseInt(id));
 
         }
