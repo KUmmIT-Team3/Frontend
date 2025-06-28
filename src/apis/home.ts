@@ -11,6 +11,25 @@ export const getTopEmotionBands = () => axios.get("http://144.24.81.195:8080/api
     })
     .catch(error => console.error(error));
 
+
+export const toggleLike = (emotionBandId: number, memberId: number) => {
+
+    const payload = {
+        memberId: memberId,
+    };
+
+    return axios.post(`http://144.24.81.195:8080/api/emotion-bands/${emotionBandId}/like`, payload)
+        .then(response => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch(error => {
+            console.error('공감 토글 실패:', error);
+            throw error;
+        });
+}
+
+
 export const dummyTopEmotionBands = () => {
     const dummyData = {
         "popularBands": [
