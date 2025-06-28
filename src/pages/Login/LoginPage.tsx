@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { getTopEmotionBands } from "../../apis/login";
+import { PostLogin } from "../../apis/login";
 import axios from "axios";
 
 const LoginPage = () => {
@@ -9,7 +9,7 @@ const LoginPage = () => {
 
   const handleClick = async () => {
     try {
-      const res = await getTopEmotionBands({ query: name });
+      const res = await PostLogin({ query: name });
       localStorage.setItem("memberId", JSON.stringify(res));
       navigate("/home");
     } catch (error: unknown) {
