@@ -25,7 +25,7 @@ const CreateBandPage = () => {
       <div className="w-[412px] h-[917px] bg-[#F3EEEF]">
         <UpperNavBar isCanBack={true} text="감정 밴드 만들기" isLogo={false} />
         <div className="flex justify-center mt-1 mx-[2px] gap-[5px]">
-          <p className="w-[195px] h-1 bg-[#C77EB5] rounded-lg"></p>
+          <p className="w-[195px] h-1 bg-[#F9906F] rounded-lg"></p>
           <p className="w-[195px] h-1 bg-[#D9D9D9] rounded-lg"></p>
         </div>
         <div className="flex items-center mb-6 pt-[38px]">
@@ -50,7 +50,7 @@ const CreateBandPage = () => {
                     }}
                     className={`w-[65.75px] h-[32px] my-[6px] mx-[5px] border rounded-[10px] text-[13px] ${
                       selectedEmotion === emotion
-                        ? "bg-[#F9906F] text-white border-[#F9906F]"
+                        ? "bg-[#F3A9B0] text-white border-[#F3A9B0]"
                         : "bg-white text-black border-[#D9D9D9]"
                     }`}
                   >
@@ -87,7 +87,7 @@ const CreateBandPage = () => {
 
           <button
             className={`fixed bottom-[40px] left-1/2 transform -translate-x-1/2 w-[347px] h-[40px] py-3 text-white rounded-[8px] flex items-center justify-center ${
-              selectedEmotion ? "bg-[#C77EB5] cursor-pointer" : "bg-[#dfb5d5]"
+              selectedEmotion ? "bg-[#F9906F] cursor-pointer" : "bg-[#f7b7a4]"
             }`}
             disabled={!selectedEmotion}
             onClick={() =>

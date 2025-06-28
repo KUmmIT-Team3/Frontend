@@ -1,16 +1,34 @@
 import { useState } from "react";
 import type { comment } from "../../types/type";
+import { postComments } from "../../apis/detailpage";
 
 type CommentBarProps = {
     comments: comment[];
+    bandId: number;
+    onCommentPosted: () => void;
 }
 
-const CommentBar = ({ comments }: CommentBarProps) => {
-    const [searchTerm, setSearchTerm] = useState("");
+const CommentBar = ({ comments, bandId, onCommentPosted }: CommentBarProps) => {
+    const [commentTerm, setCommentTerm] = useState("");
 
-    const handleClick = () => {
+    const handleClick = async () => {
+        if (!commentTerm.trim()) {
+            alert('댓글 내용을 입력해주세요.');
+            return;
+        }
 
-    }
+        try {
+            await postComments(bandId, commentTerm);
+
+            setCommentTerm('');
+            onCommentPosted();
+
+        } catch (error) {
+            console.error(error)
+            alert('댓글 등록에 실패했습니다. 다시 시도해주세요.');
+
+        }
+    };
 
     return (
         <div>
@@ -19,8 +37,8 @@ const CommentBar = ({ comments }: CommentBarProps) => {
                     <input
                         className="w-[281px] h-[40px] border border-[#D9D9D9] rounded-lg px-3 py-1 text-[14px] focus:outline-none focus:border-[#979797]"
                         placeholder="이 감정에 대한 생각을 나누어보세요"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
+                        value={commentTerm}
+                        onChange={(e) => setCommentTerm(e.target.value)}
                     />
                     <div
                         className="w-10 h-10 bg-[#C77EB5] rounded-lg inline-flex justify-center items-center cursor-pointer"

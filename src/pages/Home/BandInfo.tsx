@@ -4,8 +4,10 @@ type BandInfoProps = {
     commentCount: number;
     heartCount: number;
     liked: boolean;
+    setIsLiked: React.Dispatch<React.SetStateAction<boolean>>;
+    handleClick: () => void;
 }
-const BandInfo = ({ manCount, songCount, commentCount, heartCount, liked }: BandInfoProps) => {
+const BandInfo = ({ manCount, songCount, commentCount, heartCount, liked, setIsLiked, handleClick }: BandInfoProps) => {
 
     return (
         <div className="flex justify-between items-center">
@@ -31,7 +33,11 @@ const BandInfo = ({ manCount, songCount, commentCount, heartCount, liked }: Band
                 </div>
             </div>
             <div className="flex">
-                <div className="w-3.5 h-3.5 mr-1.5">
+                <div className="w-3.5 h-3.5 mr-1.5" onClick={() => {
+                    handleClick()
+                    setIsLiked(liked)
+                }
+                }>
                     {liked ?
                         <img src="/icons/Heart.svg" alt="공감됨" />
                         :
