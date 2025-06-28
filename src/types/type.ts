@@ -25,3 +25,35 @@ export interface UserSummary {
   likeCount: 0; // 받은 공감 수
   songAddCount: 0; // 추가한 곡 수
 }
+
+// 마이페이지 MyCreatedBands 컴포넌트에서 사용
+export interface Music {
+  title: string;
+  artist: string;
+  albumImageLink: string;
+  previewLink: string;
+}
+// 마이페이지 MyCreatedBands 컴포넌트에서 사용
+
+export interface MyCreatedBandInfo {
+  myBandList: [
+    {
+      emotion: "string";
+      writerName: "string";
+      description: "string";
+      musicList: [
+        {
+          albumImageLink: "string";
+          title: "string";
+          artist: "string";
+          previewLink: "string";
+        }
+      ];
+      likeCount: 0;
+      peopleCount: 0;
+      songCount: 0;
+      commentCount: 0;
+      endTime: "2025-06-28T18:38:14.465Z";
+    }
+  ];
+}
