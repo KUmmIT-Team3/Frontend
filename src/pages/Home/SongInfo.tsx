@@ -11,8 +11,7 @@ const SongInfo = ({ albumImg, title, singer }: SongInfoProps) => {
         w-68 mb-2">
             <div className="w-7 h-7 mr-2
             relative bg-zinc-100 rounded-lg overflow-hidden object-cover">
-                <img src="icons/altImage.svg" alt={albumImg} />
-                {/* <img src={albumImg} alt="icons/altImage.svg" />  이렇게 안되나? */}
+                <img src={albumImg} alt="앨범" />
             </div>
 
             <div className="flex flex-col justify-around">
