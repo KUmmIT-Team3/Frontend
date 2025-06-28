@@ -10,10 +10,17 @@ import MusicSearchBar from "../../components/MusicSearchBar";
 import CommentBar from "./CommentBar";
 import ArchiveNotifier from "./ArchiveNotifier";
 
+type Music = {
+    artworkUrl100: string;
+    previewUrl: string;
+    trackName: string;
+    artistName: string;
+};
+
 const DetailBandPage = () => {
 
     const [bandDetail, setBandDetail] = useState<BandDetail>();
-
+    const [music, setMusic] = useState<Music | null>(null);
     const [isMusicBar, setIsMusicBar] = useState(false);
     const [isCommentBar, setIsCommentBar] = useState(false);
     const [isArchived, setIsArchived] = useState(false);
@@ -38,7 +45,7 @@ const DetailBandPage = () => {
         }
     };
 
-    const handleArchive = async (bandId, memberId) => {
+    const handleArchive = async (bandId: number, memberId: number) => {
         try {
             await archiveBand(bandId, memberId);
             setIsArchived(!isArchived)
@@ -96,7 +103,14 @@ const DetailBandPage = () => {
                     </div>
 
                     <div data-has-icon-end="false" data-has-icon-start="true" data-size="Medium" data-state="Default" data-variant="Primary"
-                        onClick={() => handleArchive(bandDetail?.id, localStorage)}
+                        onClick={() => {
+                            const memberId = localStorage.getItem("memberId");
+                            if (bandDetail?.id !== undefined && memberId !== null)
+                                handleArchive(bandDetail?.id, parseInt(memberId))
+                            else
+                                console.error("undefined bandDetail!")
+                        }
+                        }
                         className="w-25 p-3 bg-[#ffffff] rounded-lg shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] outline-1 outline-offset-[-1px] outline-white inline-flex justify-center items-center gap-2 overflow-hidden">
                         <div className="w-4 h-4 relative">
                             <img src="/icons/Archive.svg" alt="보관" />
@@ -108,7 +122,7 @@ const DetailBandPage = () => {
 
                 {isArchived && <ArchiveNotifier />}
 
-                {isMusicBar && <MusicSearchBar />}
+                {isMusicBar && <MusicSearchBar selectedMusic={music} setSelectedMusic={setMusic} />}
 
                 {isCommentBar ?
                     bandDetail?.comments !== undefined &&
