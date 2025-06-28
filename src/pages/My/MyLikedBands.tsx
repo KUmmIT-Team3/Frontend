@@ -37,8 +37,8 @@ const MyLikedBands = () => {
           </div>
           <div className="flex items-center  justify-between">
             <div className="flex w-[323px] h-[30px]">
-              <div className="w-[50px] h-[30px] bg-[pink] rounded-[20px]">
-                <div className="w-[23px] h-[16px] ml-[14px] mt-[8px] justify-start text-white text-xs font-normal font-['SF_Pro'] leading-none">
+              <div className="w-[48px] h-[28px] bg-[pink] rounded-[20px]">
+                <div className="flex justify-center items-center w-12 h-7 rounded-[20px] text-white text-xs font-normal font-['SF_Pro'] leading-none">
                   {band.emotion}
                 </div>
               </div>
