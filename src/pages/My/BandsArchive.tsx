@@ -88,7 +88,7 @@ const BandsArchive = () => {
               </div>
               <img src="/icons/sm_album.svg" alt="수록곡" />
               <div className="justify-start text-neutral-400 text-xs font-semibold font-['Roboto'] leading-none tracking-wide">
-                {band.songCount}곡
+                {band.songCount + 1}곡
               </div>
             </div>
             <div className="flex justify-start items-end gap-0.5">

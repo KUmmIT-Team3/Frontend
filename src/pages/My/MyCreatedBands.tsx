@@ -89,7 +89,7 @@ const MyCreatedBands = () => {
                 </div>
                 <img src="/icons/sm_album.svg" alt="수록곡" />
                 <div className="text-neutral-400 text-xs font-semibold">
-                  {band.songCount}곡
+                  {band.songCount + 1}곡
                 </div>
                 <img src="/icons/comment.svg" alt="말풍선" />
                 <div className="text-neutral-400 text-xs font-semibold">
