@@ -25,11 +25,11 @@ type CreateBandRequest = {
   song: Song;
 };
 
-// type memberIdType = string | number;
+type memberIdType = string | number;
 
 export const createBand = async (
   band: CreateBandRequest,
-  // memberId: memberIdType
+  memberId: memberIdType
 ) => {
   const res = await axios.post(
     `http://144.24.81.195:8080/api/emotion-bands?memberId=` + memberId,
