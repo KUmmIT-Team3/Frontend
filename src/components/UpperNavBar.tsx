@@ -12,7 +12,7 @@ const UpperNavBar = ({ isCanBack, text }: UpperNavBarProps) => {
     }
     return (
         <div className="flex flex-row justify-between items-center
-        w-103 h-16 bg-[#ffffff]">
+        w-[412px] h-16 bg-[#ffffff] box-border">
             {isCanBack ? <div className="absolute"
                 onClick={handleClick}>
                 <img src="icons/button_back.svg" />

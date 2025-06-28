@@ -10,8 +10,6 @@ type BottomBarItemProps = {
 const BottomBarItem = ({ imageOnSrc, imageOffSrc, isSelected, text }: BottomBarItemProps) => {
 
     const navigate = useNavigate()
-    console.log(text, isSelected)
-    // #C77EB5
     const handleClick = () => {
         navigate(`/${text}`);
     }
