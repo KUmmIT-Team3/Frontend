@@ -29,7 +29,7 @@ const CreateBandPage = () => {
           <p className="w-[195px] h-1 bg-[#D9D9D9] rounded-lg"></p>
         </div>
         <div className="flex items-center mb-6 pt-[38px]">
-          <img src="./icons/pencil.svg" className="ml-[59px] w-6 h-6 " />
+          <img src="/icons/pencil.svg" className="ml-[59px] w-6 h-6 " />
           <span className="ml-[19px] text-lg text-[16px]">
             지금 느끼는 감정을 선택해 주세요
           </span>
