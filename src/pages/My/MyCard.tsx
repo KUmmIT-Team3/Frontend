@@ -11,7 +11,7 @@ const MyCard = () => {
   console.log("userSummary", userSummary); // 이 줄 추가!
 
   return (
-    <div className="mt-[33px] ml-[23px] mb-[30px] w-[365px] h-[160px] bg-gradient-to-r from-[#C77EB5] to-[#F9906F] rounded-[10px]">
+    <div className="mb-[30px] mx-auto mt-[33px] mb-[30px] w-[365px] h-[160px] bg-gradient-to-r from-[#C77EB5] to-[#F9906F] rounded-[10px]">
       <div className="relative p-0">
         <div className="absolute flex mb-[33px] top-[23px] left-[24px]">
           <div className="pr-[10px]">
@@ -33,10 +33,11 @@ const MyCard = () => {
             <div className="absolute w-[200px] h-[15px] bottom-0">
               <span className="text-white w-[120px] h-[15px] text-[10px]">
                 {userSummary
-                  ? `${new Date(userSummary.signUpDate).getFullYear()}년 ${new Date(userSummary.signUpDate).getMonth() + 1
-                  }월 ${new Date(
-                    userSummary.signUpDate
-                  ).getDate()}일부터 함께`
+                  ? `${new Date(userSummary.signUpDate).getFullYear()}년 ${
+                      new Date(userSummary.signUpDate).getMonth() + 1
+                    }월 ${new Date(
+                      userSummary.signUpDate
+                    ).getDate()}일부터 함께`
                   : ""}
               </span>
             </div>
