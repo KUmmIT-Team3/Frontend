@@ -1,5 +1,3 @@
-import React from "react";
-
 const MyLikedBands = () => {
   return (
     <div className="relative mb-[30px] w-[365px] h-[228px] mx-auto shadow-lg">
@@ -36,10 +34,12 @@ const MyLikedBands = () => {
             </div>
           </div>
 
+
           <div className="w-80 inline-flex flex-col justify-start items-start gap-2">
             <div className="self-stretch flex flex-col justify-start items-start">
               <div className="self-stretch justify-start text-black/80 text-xs font-medium font-['Roboto'] leading-none tracking-wide">
                 새로운 시작이 기대돼요! 두근두근한 마음을 음악으로 표현해봐요.
+
               </div>
             </div>
             <div className="self-stretch inline-flex justify-start items-start gap-2">

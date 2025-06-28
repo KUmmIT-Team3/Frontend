@@ -1,11 +1,32 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { PostLogin } from "../../apis/login";
+import axios from "axios";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const handleClick = () => {
-    //서버로 닉네임, 비밀번호 전송 및 사용자 정보 받기
-    navigate("/home");
+  const [name, setName] = useState("");
+
+  const KeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && name) {
+      handleClick();
+    }
   };
+
+  const handleClick = async () => {
+    try {
+      const res = await PostLogin({ query: name });
+      localStorage.setItem("memberId", String(res.memberId));
+      navigate("/home");
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        alert("회원정보가 없습니다");
+      } else {
+        console.error(error);
+      }
+    }
+  };
+
   return (
     <div className="flex justify-center">
       <div className="w-[412px] h-[917px] flex flex-col items-center pt-[140px] bg-[#FFFFFF]">
@@ -19,9 +40,17 @@ const LoginPage = () => {
           24시간 동안 특별한 플레이리스트를 만들어 보세요
         </span>
         <span className="mb-[35px] text-[22px]">이름</span>
-        <input className="mb-[70px] h-[50px] w-[362px] px-4 py-2 bg-white rounded-lg shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] "></input>
-        <button onClick={handleClick}>
-          <img src="./icons/login.svg" />
+        <input
+          className="mb-[70px] h-[50px] w-[362px] px-4 py-2 bg-white rounded-lg shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] "
+          onChange={(e) => setName(e.target.value)}
+          onKeyDown={KeyDown}
+        ></input>
+        <button
+          className={name ? "cursor-pointer" : ""}
+          disabled={!name}
+          onClick={handleClick}
+        >
+          <img src={name ? "/icons/login.svg" : "/icons/disabled_login.svg"} />
         </button>
       </div>
     </div>

@@ -78,7 +78,6 @@ export const dummyTopEmotionBands = () => {
             }
         ]
     }
-    console.log(dummyData)
     return dummyData;
 }
 

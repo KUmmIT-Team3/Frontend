@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const CreateBandPage = () => {
   const [selectedEmotion, setSelectedEmotion] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const [textareaValue, setTextareaValue] = useState("");
   const emotions = [
     "기쁨",
     "슬픔",
@@ -22,13 +23,13 @@ const CreateBandPage = () => {
   return (
     <div className="flex justify-center">
       <div className="w-[412px] h-[917px] bg-[#F3EEEF]">
-        <UpperNavBar isCanBack={true} text="감정 밴드 만들기" />
+        <UpperNavBar isCanBack={true} text="감정 밴드 만들기" isLogo={false} />
         <div className="flex justify-center mt-1 mx-[2px] gap-[5px]">
           <p className="w-[195px] h-1 bg-[#C77EB5] rounded-lg"></p>
           <p className="w-[195px] h-1 bg-[#D9D9D9] rounded-lg"></p>
         </div>
         <div className="flex items-center mb-6 pt-[38px]">
-          <img src="./icons/pencil.svg" className="ml-[59px] w-6 h-6 " />
+          <img src="/icons/pencil.svg" className="ml-[59px] w-6 h-6 " />
           <span className="ml-[19px] text-lg text-[16px]">
             지금 느끼는 감정을 선택해 주세요
           </span>
@@ -78,6 +79,7 @@ const CreateBandPage = () => {
                 <textarea
                   className="w-[293px] h-[86px] border ml-[5px] font-['Work_Sans'] border-[#D9D9D9] rounded-lg px-3 py-1 text-[14px] focus:outline-none focus:border-[#979797]"
                   placeholder="지금 느끼는 감정에 대해 간단히 설명해 주세요.예: 오늘 비가 와서 문득 떠오른 사람이 있어요..."
+                  onChange={(e) => setTextareaValue(e.target.value)}
                 ></textarea>
               </>
             )}
@@ -89,7 +91,9 @@ const CreateBandPage = () => {
             }`}
             disabled={!selectedEmotion}
             onClick={() =>
-              navigate("/addmusic", { state: { selectedEmotion } })
+              navigate("/addmusic", {
+                state: { selectedEmotion, textareaValue },
+              })
             }
           >
             다음 단계
