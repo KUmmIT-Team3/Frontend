@@ -56,7 +56,7 @@ const CreateBandPage2 = () => {
       <div className="w-[412px] h-[917px] bg-[#F8F3F4]">
         <UpperNavBar isCanBack={true} text="감정 밴드 만들기" isLogo={false} />
         <div className="flex justify-center mt-1 mx-[2px] gap-[5px] ">
-          <p className="w-[400px] h-1 bg-[#F9906F] rounded-lg"></p>
+          <p className="w-[394px] h-1 bg-[#F9906F] rounded-lg"></p>
         </div>
         <div className="flex flex-col items-center relative">
           <p className="my-[43px] text-lg text-[16px]">
