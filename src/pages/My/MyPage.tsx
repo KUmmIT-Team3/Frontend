@@ -3,17 +3,20 @@ import MyCard from "./MyCard";
 import MyCreatedBands from "./MyCreatedBands";
 import MyLikedBands from "./MyLikedBands";
 import BandsArchive from "./BandsArchive";
+import UpperNavBar from "../../components/UpperNavBar";
 import AppBar from "./AppBar";
 
 const MyPage = () => {
   return (
-    <div className="max-w-[412px] h-[917px] mx-auto overflow-y-scroll">
+    <div className="w-[412px] h-[917px]">
       <AppBar />
-      <MyCard />
-      <MyCreatedBands />
-      <MyLikedBands />
-      <BandsArchive />
-      공감한 밴드 UI 감정 밴드 아카이브 UI 사용자 기록 UI 컴포넌트 조합 UI API
+      {/*<UpperNavBar isCanBack={false} text="마이페이지" /> */}
+      <div className="w-[412px] h-[917px] bg-[#EDD1D8]/20 mx-auto overflow-y-scroll">
+        <MyCard />
+        <MyCreatedBands />
+        <MyLikedBands />
+        <BandsArchive />
+      </div>
       <BottomBar />
     </div>
   );
