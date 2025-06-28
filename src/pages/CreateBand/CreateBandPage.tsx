@@ -1,5 +1,6 @@
 import UpperNavBar from "../../components/UpperNavBar";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CreateBandPage = () => {
   const [selectedEmotion, setSelectedEmotion] = useState("");
@@ -16,13 +17,15 @@ const CreateBandPage = () => {
     "분노",
     "불안",
   ];
+  const navigate = useNavigate();
+
   return (
     <div className="flex justify-center">
       <div className="w-[412px] h-[917px] bg-[#F3EEEF]">
         <UpperNavBar isCanBack={true} text="감정 밴드 만들기" />
         <div className="flex justify-center mt-1 mx-[2px] gap-[5px]">
-          <p className="w-[195px] h-1 bg-[#C77EB5]"></p>
-          <p className="w-[195px] h-1 bg-[#D9D9D9]"></p>
+          <p className="w-[195px] h-1 bg-[#C77EB5] rounded-lg"></p>
+          <p className="w-[195px] h-1 bg-[#D9D9D9] rounded-lg"></p>
         </div>
         <div className="flex items-center mb-6 pt-[38px]">
           <img src="./icons/pencil.svg" className="ml-[59px] w-6 h-6 " />
@@ -82,8 +85,12 @@ const CreateBandPage = () => {
 
           <button
             className={`fixed bottom-[40px] left-1/2 transform -translate-x-1/2 w-[347px] h-[40px] py-3 text-white rounded-[8px] flex items-center justify-center ${
-              selectedEmotion ? "bg-[#C77EB5]" : "bg-[#dfb5d5]"
+              selectedEmotion ? "bg-[#C77EB5] cursor-pointer" : "bg-[#dfb5d5]"
             }`}
+            disabled={!selectedEmotion}
+            onClick={() =>
+              navigate("/addmusic", { state: { selectedEmotion } })
+            }
           >
             다음 단계
           </button>
