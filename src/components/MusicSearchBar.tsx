@@ -86,10 +86,10 @@ const MusicSearchBar = ({
                 />
               </div>
               <div className="flex flex-col gap-[7px]">
-                <div className="text-black text-xs font-semibold leading-none tracking-wide mr-1">
+                <div className="text-black text-xs w-[200px] font-semibold leading-none tracking-wide mr-1">
                   {music.trackName}
                 </div>
-                <div className="text-neutral-400 text-[10px] font-normal leading-none tracking-wide">
+                <div className="text-neutral-400 w-[200px] text-[10px] font-normal leading-none tracking-wide">
                   {music.artistName}
                 </div>
               </div>
