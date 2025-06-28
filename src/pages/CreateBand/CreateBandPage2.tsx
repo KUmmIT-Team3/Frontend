@@ -15,7 +15,7 @@ type Music = {
 const CreateBandPage2 = () => {
   const [music, setMusic] = useState<Music | null>(null);
   const location = useLocation();
-  const { selectedEmotion, description } = location.state || {};
+  const { selectedEmotion, textareaValue } = location.state || {};
   const navigate = useNavigate();
   const memberId = localStorage.getItem("memberId");
 
@@ -24,7 +24,7 @@ const CreateBandPage2 = () => {
 
     const bandData = {
       emotion: selectedEmotion,
-      description: description || "",
+      description: textareaValue || "",
       song: {
         title: music.trackName,
         artist: music.artistName,
