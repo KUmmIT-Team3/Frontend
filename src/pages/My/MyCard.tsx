@@ -20,7 +20,7 @@ const MyCard = () => {
               <div className="justify-start text-white text-base font-normal font-['Roboto'] leading-normal tracking-wide">
                 <span className=" text-white ">
                   {" "}
-                  {userSummary?.userName?.[0] ?? ""}{" "}
+                  {userSummary?.name?.[0] ?? ""}{" "}
                 </span>
               </div>
             </div>
