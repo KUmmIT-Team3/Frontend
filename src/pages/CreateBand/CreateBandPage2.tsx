@@ -1,6 +1,7 @@
 import UpperNavBar from "../../components/UpperNavBar";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import MusicSearchBar from "../../components/MusicSearchBar";
 
 const CreateBandPage2 = () => {
   const [music, setMusic] = useState<string | null>(null);
@@ -19,15 +20,7 @@ const CreateBandPage2 = () => {
           <p className="my-[43px] text-lg text-[16px]">
             "{selectedEmotion}"을 표현할 음악을 찾아보세요
           </p>
-          <div className="w-[360px] flex justify-center items-center bg-white px-[12px] py-[20px] gap-[15px] rounded-2xl shadow-md">
-            <input
-              className="w-[281px] h-[40px] border  border-[#D9D9D9] rounded-lg px-3 py-1 text-[14px] focus:outline-none focus:border-[#979797]"
-              placeholder="곡명, 아티스트명 검색"
-            ></input>
-            <div className="w-10 h-10 bg-[#C77EB5] rounded-lg inline-flex justify-center items-center">
-              <img src="./icons/search.svg" />
-            </div>
-          </div>
+          <MusicSearchBar />
           <div className="fixed bottom-[40px] left-1/2 transform -translate-x-1/2 flex justify-center gap-4">
             <button
               className="w-[172px] h-[40px] py-3 bg-white text-303030; rounded-[8px] flex items-center justify-center"
