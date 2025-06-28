@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useMyCreatedBandStore } from "../../stores/store";
 
@@ -38,7 +37,7 @@ const MyCreatedBands = () => {
           </div>
           <div className="flex items-center justify-between">
             <div className="flex w-[323px] h-[30px]">
-              <div className="w-[50px] h-[30px] bg-slate-400 rounded-[20px]">
+              <div className="w-[50px] h-[30px] bg-[pink] rounded-[20px]">
                 <div className="w-[34px] h-[16px] ml-[9px] mt-[8px] justify-start text-white text-xs font-normal font-['SF_Pro'] leading-none">
                   {band.emotion}
                 </div>
@@ -69,7 +68,7 @@ const MyCreatedBands = () => {
             </div>
             <div className="self-stretch inline-flex justify-start items-start gap-2">
               {band.musicList?.map((music, index) => (
-                <div className="w-40 h-7 relative" key={index}>
+                <div className="w-40 h-7 relative overflow-hidden" key={index}>
                   <div className="w-7 h-7 left-0 top-0 absolute bg-zinc-100 rounded-lg overflow-hidden">
                     <img src={music.albumImageLink} alt="앨범커버" />
                   </div>
