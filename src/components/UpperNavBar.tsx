@@ -15,7 +15,7 @@ const UpperNavBar = ({ isCanBack, text }: UpperNavBarProps) => {
         w-[412px] h-16 bg-[#ffffff] box-border">
             {isCanBack ? <div className="absolute"
                 onClick={handleClick}>
-                <img src="icons/button_back.svg" />
+                <img src="/icons/button_back.svg" alt="뒤로가기" />
             </div> : <div><img src="icons/small_logo.svg" alt="로고" /></div>}
             <div>
                 {text}

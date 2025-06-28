@@ -29,7 +29,7 @@ const MusicSearchBar = () => {
           className="w-10 h-10 bg-[#C77EB5] rounded-lg inline-flex justify-center items-center cursor-pointer"
           onClick={handleSearch}
         >
-          <img src="./icons/search.svg" />
+          <img src="/icons/search.svg" />
         </div>
       </div>
 
@@ -48,6 +48,7 @@ const MusicSearchBar = () => {
       {previewUrl && (
         <audio controls src={previewUrl} autoPlay className="mt-4" />
       )}
+
     </div>
   );
 };

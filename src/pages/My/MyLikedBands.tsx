@@ -1,4 +1,3 @@
-import React from "react";
 
 const MyLikedBands = () => {
   return (
@@ -36,7 +35,7 @@ const MyLikedBands = () => {
               </div>
             </div>
           </div>
-          <div className="self-stretch h-0 bg-zinc-300 outline outline-1 outline-offset-[-0.50px] outline-zinc-300/50"></div>
+          <div className="self-stretch h-0 bg-zinc-300 outline-1 outline-offset-[-0.50px] outline-zinc-300/50"></div>
           <div className="self-stretch inline-flex justify-between items-center">
             <div className="flex justify-start items-center gap-2">
               <div className="justify-start text-neutral-400 text-xs font-semibold font-['Roboto'] leading-none tracking-wide">
