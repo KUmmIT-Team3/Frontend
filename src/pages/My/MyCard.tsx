@@ -1,5 +1,3 @@
-import React from "react";
-
 const MyCard = () => {
   return (
     <div className="mt-[33px] ml-[23px] mb-[30px] w-[365px] h-[160px] bg-gradient-to-r from-[#C77EB5] to-[#F9906F] rounded-[10px]">
