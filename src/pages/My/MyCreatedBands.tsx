@@ -37,7 +37,6 @@ const MyCreatedBands = () => {
           </div>
           <div className="flex items-center justify-between">
             <div className="flex w-[323px] h-[30px]">
-
               <div className="w-[50px] h-[30px] bg-[pink] rounded-[20px]">
                 <div className="w-[34px] h-[16px] ml-[9px] mt-[8px] justify-start text-white text-xs font-normal font-['SF_Pro'] leading-none">
                   {band.emotion}
@@ -63,17 +62,19 @@ const MyCreatedBands = () => {
             <div className="text-black/80 text-xs font-medium leading-none">
               {band.description}
             </div>
-            <div className="flex gap-2">
+            <div className="self-stretch flex flex-wrap gap-2">
               {band.musicList?.map((music, index) => (
-
-                <div className="w-40 h-7 relative overflow-hidden" key={index}>
+                <div
+                  className="w-[140px] h-[40px] relative overflow-hidden"
+                  key={index}
+                >
                   <div className="w-7 h-7 left-0 top-0 absolute bg-zinc-100 rounded-lg overflow-hidden">
                     <img src={music.albumImageLink} alt="앨범커버" />
                   </div>
-                  <div className="left-[38px] top-0 absolute text-black text-xs font-semibold leading-none">
+                  <div className="z-0 left-[38px] top-0 absolute text-black text-xs font-semibold font-['Roboto'] leading-none tracking-wide overflow-hidden whitespace-nowrap text-ellipsis w-[95px]">
                     {music.title}
                   </div>
-                  <div className="left-[38px] top-[15px] absolute text-neutral-400 text-[10px] font-normal leading-none">
+                  <div className="left-[38px] top-[13px] absolute justify-start text-neutral-400 text-[10px] font-normal font-['Roboto'] leading-none tracking-wide">
                     {music.artist}
                   </div>
                 </div>
@@ -101,14 +102,6 @@ const MyCreatedBands = () => {
                   {band.likeCount}
                 </div>
               </div>
-            </div>
-            <div className="relative flex justify-between w-[320px] h-[15px] mt-2">
-              <button className="absolute left-0 text-[#979797] text-[10px]">
-                이전
-              </button>
-              <button className="absolute right-0 text-[#979797] text-[10px]">
-                다음
-              </button>
             </div>
           </div>
         </div>
