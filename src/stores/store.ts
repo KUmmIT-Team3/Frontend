@@ -9,18 +9,22 @@ interface UserSummaryState {
   fetchUserSummary: () => Promise<void>;
 }
 
-export const useUserSummaryStore = create<UserSummaryState>((set) => ({
-  userSummary: null,
-  fetchUserSummary: async () => {
-    try {
-      const summary = await getUserSummary();
-      console.log("API 응답:", summary);
-      set({ userSummary: summary });
-    } catch (error) {
-      console.error("API 호출 실패:", error);
-    }
-  },
-}));
+export const useUserSummaryStore = create<UserSummaryState>((set) => {
+  const memberId = localStorage.getItem("memberId");
+  return {
+    userSummary: null,
+    fetchUserSummary: async () => {
+      try {
+        if (!memberId) throw new Error("memberId 없음");
+        const summary = await getUserSummary(memberId);
+        console.log("API 응답:", summary);
+        set({ userSummary: summary });
+      } catch (error) {
+        console.error("API 호출 실패:", error);
+      }
+    },
+  };
+});
 
 interface MyCreatedBandState {
   myCreatedBand: MyCreatedBandInfo | null;

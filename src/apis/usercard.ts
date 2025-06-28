@@ -1,14 +1,14 @@
 import axios from "axios";
 import type { UserSummary } from "../types/type";
 
-export const getUserSummary = async (): Promise<UserSummary> => {
+type memberIdType = string | number;
+
+export const getUserSummary = async (
+  memberId: memberIdType
+): Promise<UserSummary> => {
   const res = await axios.get<UserSummary>(
-    "http://144.24.81.195:8080/api/member/profile",
-    {
-      params: {
-        memberId: localStorage.getItem("memberId") || "0",
-      },
-    }
+    `http://144.24.81.195:8080/api/member/profile`,
+    { params: { memberId } }
   );
   return res.data;
 };
