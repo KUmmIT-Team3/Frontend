@@ -2,8 +2,8 @@ import React from "react";
 
 const AppBar = () => {
   return (
-    <div className="flex items-center">
-      <span className="w-auto h-auto text-xl text-center">마이페이지</span>
+    <div className="flex h-[64px] ml-[4px] shadow-md items-center">
+      <span className="text-xl mx-auto">마이페이지</span>
     </div>
   );
 };
