@@ -20,7 +20,7 @@ const CreateBandPage2 = () => {
           <p className="my-[43px] text-lg text-[16px]">
             "{selectedEmotion}"을 표현할 음악을 찾아보세요
           </p>
-          <MusicSearchBar />
+          <MusicSearchBar selectedMusic={music} setSelectedMusic={setMusic} />
           <div className="fixed bottom-[40px] left-1/2 transform -translate-x-1/2 flex justify-center gap-4">
             <button
               className="w-[172px] h-[40px] py-3 bg-white text-303030; rounded-[8px] flex items-center justify-center"
