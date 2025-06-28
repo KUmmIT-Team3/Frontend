@@ -1,3 +1,39 @@
+
+export interface Comment {
+    id: number;
+    creatorName: string;
+    comment: string;
+}
+
+// BandPlayListProps를 더 명확한 이름인 Song으로 변경하여 사용합니다.
+export interface Song {
+    id: number;
+    title: string;
+    artist: string;
+    creatorName: string;
+    createdAt: string;
+    albumImageLink: string;
+    previewLink: string;
+    emotionBandId: number;
+    emotion: string;
+}
+
+export interface BandDetail {
+    id: number;
+    creatorName: string;
+    emotion: string;
+    description: string;
+    endTime: string;
+    likeCount: number;
+    peopleCount: number;
+    songCount: number;
+    commentCount: number;
+    liked: boolean;
+    songs: Song[];
+    comments: Comment[];
+    archived: boolean;
+}
+
 export interface bands {
     id: number;
     creatorName: string;
@@ -36,6 +72,7 @@ export interface Music {
 }
 // 마이페이지 MyCreatedBands 컴포넌트에서 사용
 
+
 export interface MyCreatedBandInfo {
     myBandList: [
         {
@@ -60,165 +97,165 @@ export interface MyCreatedBandInfo {
 }
 
 export interface song {
-  id: number;
-  title: string;
-  artist: string;
-  creatorName: string;
-  createdAt: string;
-  albumImageLink: string;
-  previewLink: string;
-  emotionBandId: number;
-  emotion: string;
+    id: number;
+    title: string;
+    artist: string;
+    creatorName: string;
+    createdAt: string;
+    albumImageLink: string;
+    previewLink: string;
+    emotionBandId: number;
+    emotion: string;
 }
 
 export interface comment {
-  id: number;
-  creatorName: string;
-  comment: string;
+    id: number;
+    creatorName: string;
+    comment: string;
 }
 
 export interface BandDetail {
-  id: number;
-  creatorName: string;
-  emotion: string;
-  description: string;
-  endTime: string; //"2025-06-28T12:38:04.413Z", 날짜 별도 처리?
-  likeCount: number;
-  peopleCount: number;
-  songCount: number;
-  commentCount: number;
-  liked: boolean;
-  songs: song[];
-  comments: comment[];
-  archived: boolean;
+    id: number;
+    creatorName: string;
+    emotion: string;
+    description: string;
+    endTime: string; //"2025-06-28T12:38:04.413Z", 날짜 별도 처리?
+    likeCount: number;
+    peopleCount: number;
+    songCount: number;
+    commentCount: number;
+    liked: boolean;
+    songs: song[];
+    comments: comment[];
+    archived: boolean;
 }
 
 export interface BandPlayListProps {
-  id: number;
-  title: string;
-  artist: string;
-  creatorName: string;
-  albumImageLink: string;
-  previewLink: string;
+    id: number;
+    title: string;
+    artist: string;
+    creatorName: string;
+    albumImageLink: string;
+    previewLink: string;
 }
 // 마이페이지 MyCreatedBands 컴포넌트에서 사용
 export interface Music {
-  title: string;
-  artist: string;
-  albumImageLink: string;
-  previewLink: string;
+    title: string;
+    artist: string;
+    albumImageLink: string;
+    previewLink: string;
 }
 // 마이페이지 MyCreatedBands 컴포넌트에서 사용
 
 export interface MyCreatedBandInfo {
-  myBandList: [
-    {
-      emotion: "string";
-      writerName: "string";
-      description: "string";
-      musicList: [
+    myBandList: [
         {
-          albumImageLink: "string";
-          title: "string";
-          artist: "string";
-          previewLink: "string";
+            emotion: "string";
+            writerName: "string";
+            description: "string";
+            musicList: [
+                {
+                    albumImageLink: "string";
+                    title: "string";
+                    artist: "string";
+                    previewLink: "string";
+                }
+            ];
+            likeCount: 0;
+            peopleCount: 0;
+            songCount: 0;
+            commentCount: 0;
+            endTime: "2025-06-28T18:38:14.465Z";
         }
-      ];
-      likeCount: 0;
-      peopleCount: 0;
-      songCount: 0;
-      commentCount: 0;
-      endTime: "2025-06-28T18:38:14.465Z";
-    }
-  ];
+    ];
 }
 
 // MyLikedBands 컴포넌트에서 사용
 export interface MyLikedBandInfo {
-  myBandList: [
-    {
-      emotion: "string";
-      writerName: "string";
-      description: "string";
-      musicList: [
+    myBandList: [
         {
-          albumImageLink: "string";
-          title: "string";
-          artist: "string";
-          previewLink: "string";
+            emotion: "string";
+            writerName: "string";
+            description: "string";
+            musicList: [
+                {
+                    albumImageLink: "string";
+                    title: "string";
+                    artist: "string";
+                    previewLink: "string";
+                }
+            ];
+            likeCount: 0;
+            peopleCount: 0;
+            songCount: 0;
+            commentCount: 0;
+            endTime: "2025-06-28T18:38:14.465Z";
         }
-      ];
-      likeCount: 0;
-      peopleCount: 0;
-      songCount: 0;
-      commentCount: 0;
-      endTime: "2025-06-28T18:38:14.465Z";
-    }
-  ];
+    ];
 }
 
 export interface MyArchivedBandInfo {
-  myBandList: [
-    {
-      emotion: "string";
-      writerName: "string";
-      description: "string";
-      musicList: [
+    myBandList: [
         {
-          albumImageLink: "string";
-          title: "string";
-          artist: "string";
-          previewLink: "string";
+            emotion: "string";
+            writerName: "string";
+            description: "string";
+            musicList: [
+                {
+                    albumImageLink: "string";
+                    title: "string";
+                    artist: "string";
+                    previewLink: "string";
+                }
+            ];
+            likeCount: 0;
+            peopleCount: 0;
+            songCount: 0;
+            commentCount: 0;
+            endTime: "2025-06-28T18:38:14.465Z";
         }
-      ];
-      likeCount: 0;
-      peopleCount: 0;
-      songCount: 0;
-      commentCount: 0;
-      endTime: "2025-06-28T18:38:14.465Z";
-    }
-  ];
+    ];
 }
 
 export interface song {
-  id: number;
-  title: string;
-  artist: string;
-  creatorName: string;
-  createdAt: string;
-  albumImageLink: string;
-  previewLink: string;
-  emotionBandId: number;
-  emotion: string;
+    id: number;
+    title: string;
+    artist: string;
+    creatorName: string;
+    createdAt: string;
+    albumImageLink: string;
+    previewLink: string;
+    emotionBandId: number;
+    emotion: string;
 }
 
 export interface comment {
-  id: number;
-  creatorName: string;
-  comment: string;
+    id: number;
+    creatorName: string;
+    comment: string;
 }
 
 export interface BandDetail {
-  id: number;
-  creatorName: string;
-  emotion: string;
-  description: string;
-  endTime: string; //"2025-06-28T12:38:04.413Z", 날짜 별도 처리?
-  likeCount: number;
-  peopleCount: number;
-  songCount: number;
-  commentCount: number;
-  liked: boolean;
-  songs: song[];
-  comments: comment[];
-  archived: boolean;
+    id: number;
+    creatorName: string;
+    emotion: string;
+    description: string;
+    endTime: string; //"2025-06-28T12:38:04.413Z", 날짜 별도 처리?
+    likeCount: number;
+    peopleCount: number;
+    songCount: number;
+    commentCount: number;
+    liked: boolean;
+    songs: song[];
+    comments: comment[];
+    archived: boolean;
 }
 
 export interface BandPlayListProps {
-  id: number;
-  title: string;
-  artist: string;
-  creatorName: string;
-  albumImageLink: string;
-  previewLink: string;
+    id: number;
+    title: string;
+    artist: string;
+    creatorName: string;
+    albumImageLink: string;
+    previewLink: string;
 }
