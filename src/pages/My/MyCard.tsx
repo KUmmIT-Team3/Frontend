@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useUserSummaryStore } from "../../stores/store";
-import type { UserSummary } from "../../types/type";
 
 const MyCard = () => {
   const { userSummary, fetchUserSummary } = useUserSummaryStore();
@@ -34,11 +33,10 @@ const MyCard = () => {
             <div className="absolute w-[200px] h-[15px] bottom-0">
               <span className="text-white w-[120px] h-[15px] text-[10px]">
                 {userSummary
-                  ? `${new Date(userSummary.signUpDate).getFullYear()}년 ${
-                      new Date(userSummary.signUpDate).getMonth() + 1
-                    }월 ${new Date(
-                      userSummary.signUpDate
-                    ).getDate()}일부터 함께`
+                  ? `${new Date(userSummary.signUpDate).getFullYear()}년 ${new Date(userSummary.signUpDate).getMonth() + 1
+                  }월 ${new Date(
+                    userSummary.signUpDate
+                  ).getDate()}일부터 함께`
                   : ""}
               </span>
             </div>
