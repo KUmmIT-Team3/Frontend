@@ -4,6 +4,8 @@ import type { bands } from "../../types/type";
 import BandInfo from "./BandInfo"
 import EmotionName from "./EmotionName";
 import SongInfo from "./SongInfo"
+import { toggleLike } from "../../apis/home";
+import { useState } from "react";
 
 // #91ADC6
 // #97C0C0
@@ -22,10 +24,11 @@ const EmotionBand = ({
     songs,
     liked }: bands) => {
     const navigate = useNavigate();
+    const [isLiked, setIsLiked] = useState(liked);
     const handleClick = () => {
         navigate(`/detail/${id}`)
     }
-
+    const memberId = localStorage.getItem("memberId");
     const calEndTime = (dateString: string): string => {
         const date = new Date(dateString);
         const formatter = new Intl.DateTimeFormat('ko-KR', {
@@ -38,6 +41,18 @@ const EmotionBand = ({
 
         return `${hours}시 ${minutes}분`;
     }
+
+    const handleLike = async (bandId: number, memberId: number) => {
+        try {
+            await toggleLike(bandId, memberId);
+            setIsLiked(!liked)
+
+        } catch (error) {
+            console.error(error)
+            alert('공감 시도에 실패. 다시 시도해주세요.');
+        }
+    };
+
 
     return (
         <div className="flex justify-around
@@ -55,11 +70,13 @@ const EmotionBand = ({
                     </div>
                 </div>
 
-                <div className="self-stretch justify-start text-black/80 text-xs font-medium font-['Roboto'] leading-none tracking-wide">
+                <div className="self-stretch justify-start text-black/80 text-xs font-medium font-['Roboto'] leading-none tracking-wide"
+                    onClick={handleClick}>
                     {description}
                 </div>
 
-                <div className="pt-2 pd-2">
+                <div className="pt-2 pd-2"
+                    onClick={handleClick}>
                     {songs !== undefined && songs.map((song) => {
                         return <SongInfo albumImg={song.albumImageLink} title={song.title} singer={song.artist} />
                     })}
@@ -69,7 +86,10 @@ const EmotionBand = ({
                 <div className="self-stretch h-0 bg-zinc-300 outline-1 outline-offset-[-0.50px] outline-zinc-300/50 mb-2"></div>
 
                 <BandInfo manCount={peopleCount} songCount={songCount}
-                    commentCount={commentCount} heartCount={likeCount} liked={liked} />
+                    commentCount={commentCount} heartCount={likeCount} liked={isLiked} setIsLiked={setIsLiked} handleClick={() => {
+                        if (id !== undefined && memberId !== null)
+                            handleLike(id, parseInt(memberId))
+                    }} />
 
             </div>
 
