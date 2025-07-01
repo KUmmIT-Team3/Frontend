@@ -9,6 +9,7 @@ type BandIntroProps = {
   peopleCount: number;
   songCount: number;
   commentCount: number;
+  handleClick: () => void;
 };
 
 const BandIntro = ({
@@ -20,6 +21,7 @@ const BandIntro = ({
   peopleCount,
   songCount,
   commentCount,
+  handleClick
 }: BandIntroProps) => {
   return (
     <div
@@ -29,16 +31,24 @@ const BandIntro = ({
       <div>
         <div className="flex justify-between">
           <EmotionName emotion={emotion} />
-          <div className="flex">
-            <div className="w-3.5 h-3.5 mr-1.5">
+          <div className="flex mr-2 mt-2" onClick={handleClick}>
+            <div className="w-3.5 h-3.5 mr-2">
               {liked ? (
-                <img src="/icons/Heart-off-white.svg" alt="공감됨" />
+                <img src="/icons/Heart-on.svg" alt="공감됨" />
               ) : (
                 <img src="/icons/Heart-off-white.svg" alt="공감안됨" />
               )}
             </div>
             <div className="justify-start text-white text-xs font-medium font-['Roboto'] leading-none tracking-wide">
-              {likeCount}
+              {liked ? (
+                <div className="text-red-500">
+                  {likeCount}
+                </div>
+              ) : (
+                <div className="text-white">
+                  {likeCount}
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -53,7 +63,7 @@ const BandIntro = ({
           </div>
 
           <div
-            className="flex justify-between items-center mt-3 mb-3
+            className="flex justify-between items-center mt-6 mb-3
                 w-43"
           >
             <div className="flex">

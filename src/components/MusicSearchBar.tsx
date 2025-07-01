@@ -17,6 +17,7 @@ const MusicSearchBar = ({
   selectedMusic,
   setSelectedMusic,
 }: MusicSearchBarProps) => {
+
   const [searchTerm, setSearchTerm] = useState("");
   const [musics, setMusics] = useState<Music[]>([]);
   const [currentPlaying, setCurrentPlaying] = useState<string | null>(null);
@@ -51,9 +52,8 @@ const MusicSearchBar = ({
 
   return (
     <div
-      className={`w-[360px] ${
-        height === 80 ? "h-[80px]" : "h-[500px]"
-      } flex flex-col bg-white px-[12px] py-[20px] gap-[15px] rounded-2xl shadow-md overflow-y-scroll`}
+      className={`w-[360px] ${height === 80 ? "h-[80px]" : "h-[500px]"
+        } flex flex-col mb-6 bg-white px-[12px] py-[20px] gap-[15px] rounded-2xl shadow-md overflow-y-scroll no-scrollbar`}
     >
       <div className="flex items-center gap-[10px]">
         <input
@@ -101,11 +101,10 @@ const MusicSearchBar = ({
               </div>
             </div>
             <button
-              className={`w-10 h-[30px] text-[14px] rounded-lg cursor-pointer ${
-                selectedMusic === music
-                  ? "bg-[#c76c51] text-white"
-                  : "bg-[#F9906F] text-white"
-              }`}
+              className={`w-10 h-[30px] text-[14px] rounded-lg cursor-pointer ${selectedMusic === music
+                ? "bg-[#c76c51] text-white"
+                : "bg-[#F9906F] text-white"
+                }`}
               onClick={() => setSelectedMusic(music)}
             >
               추가

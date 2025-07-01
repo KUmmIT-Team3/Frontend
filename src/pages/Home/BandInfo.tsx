@@ -1,13 +1,16 @@
+import { useState } from "react";
+
 type BandInfoProps = {
     manCount: number;
     songCount: number;
     commentCount: number;
     heartCount: number;
     liked: boolean;
-    setIsLiked: React.Dispatch<React.SetStateAction<boolean>>;
     handleClick: () => void;
 }
-const BandInfo = ({ manCount, songCount, commentCount, heartCount, liked, setIsLiked, handleClick }: BandInfoProps) => {
+const BandInfo = ({ manCount, songCount, commentCount, heartCount, liked, handleClick }: BandInfoProps) => {
+
+    const [likedText, setLikedText] = useState("")
 
     return (
         <div className="flex justify-between items-center">
@@ -35,16 +38,19 @@ const BandInfo = ({ manCount, songCount, commentCount, heartCount, liked, setIsL
             <div className="flex">
                 <div className="w-3.5 h-3.5 mr-1.5" onClick={() => {
                     handleClick()
-                    setIsLiked(liked)
+                    if (liked)
+                        setLikedText("black")
+                    else
+                        setLikedText("red")
                 }
                 }>
                     {liked ?
-                        <img src="/icons/Heart.svg" alt="공감됨" />
+                        <img src="/icons/Heart-on.svg" alt="공감됨" />
                         :
                         <img src="/icons/Heart-off.svg" alt="공감안됨" />
                     }
                 </div>
-                <div className="justify-start text-neutral-400 text-xs font-semibold font-['Roboto'] leading-none tracking-wide">{heartCount}</div>
+                <div className="justify-start text-neutral-400 text-xs font-semibold font-['Roboto'] leading-none tracking-wide" style={{ color: `${likedText}` }}>{heartCount}</div>
             </div>
         </div>
 

@@ -14,8 +14,8 @@ const DoomsDayNotifier = ({ endTime }: DoomsDayNotifierProps) => {
     }
 
     return (
-        <div className="w-96 h-14 px-3.5 py-[5px] relative bottom-23
-         bg-orange-100 rounded-[20px] shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] 
+        <div className="w-[360px] h-14 px-3.5 py-[5px]
+         bg-[#F2EDDB] rounded-[20px] shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] 
          outline-1 outline-offset-[-1px] outline-orange-100 flex flex-row justify-start items-center gap-2.5">
 
             <div>

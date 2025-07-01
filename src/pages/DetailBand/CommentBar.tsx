@@ -31,7 +31,7 @@ const CommentBar = ({ comments, bandId, memberId, onCommentPosted }: CommentBarP
 
     return (
         <div>
-            <div className="w-[360px] flex flex-col justify-center items-center bg-white px-[12px] py-[20px] gap-[15px] rounded-2xl shadow-md">
+            <div className="w-[360px] flex flex-col justify-center items-center mb-6 bg-white px-[12px] py-[20px] gap-[15px] rounded-2xl shadow-md">
                 <div className="flex justify-between items-center">
                     <input
                         className="w-[281px] h-[40px] border border-[#D9D9D9] rounded-lg px-3 py-1 text-[14px] focus:outline-none focus:border-[#979797]"
@@ -50,8 +50,8 @@ const CommentBar = ({ comments, bandId, memberId, onCommentPosted }: CommentBarP
                 <div className="w-[281px] mt-4">
                     {comments.map((comment) => {
                         return (
-                            <div key={comment.id} className="flex justify-start items-center">
-                                <div className="w-10 h-10 relative bg-[#F9906F] rounded-[20px] mr-4">
+                            <div key={comment.id} className="flex justify-start items-center mb-2">
+                                <div className="w-10 h-10 relative left-[-6px] bg-[#F9906F] rounded-[20px] mr-4">
                                     <div className="left-[12.50px] top-[8px] absolute justify-start text-white text-base font-normal font-['Roboto'] leading-normal tracking-wide">
                                         {comment.creatorName[0]}
                                     </div>

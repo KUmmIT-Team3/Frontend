@@ -3,7 +3,7 @@ import type { bands } from "../../types/type";
 import BandInfo from "./BandInfo";
 import EmotionName from "./EmotionName";
 import SongInfo from "./SongInfo";
-import { toggleLike } from "../../apis/home";
+import { toggleLike } from "../../apis/detailpage";
 import { useState } from "react";
 
 // #91ADC6
@@ -20,7 +20,6 @@ const EmotionBand = ({
     endTime,
     likeCount,
     peopleCount,
-    songCount,
     commentCount,
     songs,
     liked,
@@ -30,7 +29,8 @@ const EmotionBand = ({
     const handleClick = () => {
         navigate(`/detail/${id}`);
     };
-    const memberId = localStorage.getItem("memberId");
+    const memberId = parseInt(localStorage.getItem("memberId") || "0", 10);
+
     const calEndTime = (dateString: string): string => {
         const date = new Date(dateString);
         const formatter = new Intl.DateTimeFormat("ko-KR", {
@@ -46,6 +46,7 @@ const EmotionBand = ({
 
     const handleLike = async (bandId: number, memberId: number) => {
         try {
+            console.log("handleLike 호출, bandId =", bandId, "memberId = ", memberId)
             await toggleLike(bandId, memberId);
             setIsLiked(!liked);
         } catch (error) {
@@ -98,20 +99,19 @@ const EmotionBand = ({
                                     />
                                 );
                             })}
-                        {/* <SongInfo albumImg={"img"} title={"title"} singer={"singer"} /> */}
                     </div>
                     <div className="self-stretch h-0 bg-zinc-300 outline-1 outline-offset-[-0.50px] outline-zinc-300/50 mb-2"></div>
 
                     <BandInfo
                         manCount={peopleCount}
-                        songCount={songCount}
+                        // songCount={songCount}
+                        songCount={songs.length}
                         commentCount={commentCount}
                         heartCount={likeCount}
                         liked={isLiked}
-                        setIsLiked={setIsLiked}
                         handleClick={() => {
                             if (id !== undefined && memberId !== null)
-                                handleLike(id, parseInt(memberId));
+                                handleLike(id, memberId);
                         }}
                     />
                 </div>
