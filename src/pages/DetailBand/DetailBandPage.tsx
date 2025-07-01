@@ -34,12 +34,9 @@ const DetailBandPage = () => {
 
 
     const fetchBandDetail = async () => {
-        console.group("데이터 로딩 사이클");
-        console.log("1. useEffect가 fetchBandDetail 호출함");
-        console.log("2. 현재 상태", { bandId, memberId });
 
         if (!bandId || !memberId) {
-            console.warn("3. bandId 또는 memberId가 유효하지 않아 요청을 중단합니다.");
+            console.warn("bandId 또는 memberId가 유효하지 않아 요청을 중단합니다.");
             console.groupEnd();
             setError("유효한 밴드 또는 사용자 정보가 없습니다.");
             setIsLoading(false);
@@ -48,25 +45,21 @@ const DetailBandPage = () => {
 
         try {
             setIsLoading(true);
-            console.log("4. API 서버에 데이터 요청을 보냅니다...");
+
             const data = await getBandDetail(parseInt(bandId), memberId);
 
-            console.log("5. 서버로부터 받은 원본 데이터:", data);
-            console.log("6. 받은 데이터의 타입:", typeof data);
-
-            if (typeof data === 'object' && data !== null) {
-                console.log("7. 데이터의 키(key) 목록:", Object.keys(data));
-            }
+            console.log("서버로부터 받은 원본 데이터:", data);
+            console.log("받은 데이터의 타입:", typeof data);
 
             setBandDetail(data);
-            console.log("8. setBandDetail(data) 호출 완료.");
+            console.log("setBandDetail(data) 호출 완료.");
 
         } catch (err) {
             console.error("X. CATCH 블록에서 에러 발생:", err);
             setError("데이터를 불러오는 중 오류가 발생했습니다.");
         } finally {
             setIsLoading(false);
-            console.log("9. 로딩 상태 종료.");
+            console.log("로딩 상태 종료.");
             console.groupEnd();
         }
     };
@@ -98,31 +91,34 @@ const DetailBandPage = () => {
             {/* 수정: 가드 클로즈 덕분에 더 이상 ?. 나 || 연산자가 필요 없음 */}
             <UpperNavBar isCanBack={true} text={bandDetail.emotion} isLogo={false} />
             <div className="flex flex-col h-[853px] items-center">
-                <BandIntro {...bandDetail} />
+                <BandIntro {...bandDetail} handleClick={handleToggleLike} />
                 <div className="w-[412px] flex justify-around pl-6 pr-6 mb-6">
 
-                    <button onClick={handleToggleLike} className="flex flex-col items-center">
-                        <img src={bandDetail.liked ? "/icons/Heart-on.svg" : "/icons/Heart-off.svg"} alt="좋아요" />
-                        <span>좋아요</span>
-                    </button>
-
-                    <button onClick={() => setIsCommentBar(!isCommentBar)} className="flex flex-col items-center">
-                        <img src="/icons/comment_icon_pink.svg" alt="코멘트" />
-                        <span>코멘트</span>
-                    </button>
-
-                    <button onClick={() => setIsMusicBar(!isMusicBar)} className="flex flex-col items-center">
+                    <div data-has-icon-end="false" data-has-icon-start="true" data-size="Medium" data-state="Default" data-variant="Primary"
+                        onClick={() => setIsMusicBar(!isMusicBar)}
+                        className="w-24 p-3 bg-[#F9906F] rounded-lg shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] outline-1 outline-offset-[-1px] outline-[#F9906F] inline-flex justify-center items-center gap-2 overflow-hidden">
                         <img src="/icons/add-on.svg" alt="음악" />
-                        <span>음악</span>
-                    </button>
+                        <div className="justify-start text-Text-Brand-On-Brand text-base font-normal font-['Inter'] text-[#FFFFFF] leading-none">음악</div>
+                    </div>
 
-                    <button onClick={handleToggleArchive} className="flex flex-col items-center">
+                    <div data-has-icon-end="false" data-has-icon-start="true" data-size="Medium" data-state="Default" data-variant="Primary"
+                        onClick={() => setIsCommentBar(!isCommentBar)}
+                        className="w-24 p-3 bg-[#FFFFFF] rounded-lg shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] outline-1 outline-offset-[-1px] outline-[#FFFFFF] inline-flex justify-center items-center gap-2 overflow-hidden">
+                        <img src="/icons/comment_icon_pink.svg" alt="코멘트" />
+                        <div className="justify-start text-Text-Brand-On-Brand text-base font-normal font-['Inter'] leading-none text-[#F9906F]">코멘트</div>
+                    </div>
+
+                    <div data-has-icon-end="false" data-has-icon-start="true" data-size="Medium" data-state="Default" data-variant="Primary"
+                        onClick={handleToggleArchive}
+                        className="w-24 p-3 bg-[#FFFFFF] rounded-lg shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] outline-1 outline-offset-[-1px] outline-[#FFFFFF] inline-flex justify-center items-center gap-2 overflow-hidden">
                         <img src="/icons/Archive.svg" alt="보관" />
-                        <span>{bandDetail.archived ? '보관됨' : '보관'}</span>
-                    </button>
+                        <div className="justify-start text-Text-Brand-On-Brand text-base font-normal font-['Inter'] text-[#1D4F7A] leading-none">{bandDetail.archived ? '보관됨' : '보관'}</div>
+                    </div>
+
                 </div>
 
                 {bandDetail.archived && <ArchiveNotifier />}
+
                 {isMusicBar && <MusicSearchBar selectedMusic={music} setSelectedMusic={setMusic} />}
 
                 {isCommentBar && (
@@ -135,9 +131,11 @@ const DetailBandPage = () => {
                 )}
 
                 <BandPlayList songs={bandDetail.songs as unknown as Song[]} />
+
+                <DoomsDayNotifier endTime={bandDetail.endTime} />
             </div>
 
-            <DoomsDayNotifier endTime={bandDetail.endTime} />
+
         </div>
     );
 };

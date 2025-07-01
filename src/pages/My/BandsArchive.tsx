@@ -1,4 +1,4 @@
-import { use, useEffect } from "react";
+import { useEffect } from "react";
 import { useMyArchivedBandStore } from "../../stores/store";
 
 const BandsArchive = () => {
@@ -79,7 +79,7 @@ const BandsArchive = () => {
               </div>
             ))}
           </div>
-          <div className="self-stretch h-0 bg-zinc-300 outline outline-1 outline-offset-[-0.50px] outline-zinc-300/50"></div>
+          <div className="self-stretch h-0 bg-zinc-300 outline-1 outline-offset-[-0.50px] outline-zinc-300/50"></div>
           <div className="self-stretch inline-flex justify-between items-center">
             <div className="flex justify-start items-center gap-2">
               <img src="/icons/people.svg" alt="사람" />

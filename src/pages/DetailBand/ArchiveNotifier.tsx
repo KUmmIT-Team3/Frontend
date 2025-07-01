@@ -1,6 +1,6 @@
 const ArchiveNotifer = () => {
     return (
-        <div className="w-96 h-20 px-2.5 py-4 bg-white rounded-[20px] shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] inline-flex flex-col justify-center items-center gap-2.5">
+        <div className="w-[360px] h-20 px-2.5 py-4 mb-6 bg-white rounded-[20px] shadow-[2px_4px_15px_0px_rgba(0,0,0,0.10)] inline-flex flex-col justify-center items-center gap-2.5">
             <div className="inline-flex justify-start items-center gap-3.5">
                 <div className="w-10 h-10 rounded-lg flex justify-center items-center gap-2.5">
                     <div data-size="20" className="w-5 h-5 relative overflow-hidden">

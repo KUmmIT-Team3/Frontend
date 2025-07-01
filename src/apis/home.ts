@@ -1,5 +1,19 @@
 import axios from "axios";
 
+export const dummyForLoading = {
+  id: -1,
+  creatorName: "누군가",
+  emotion: "감정",
+  description: "코멘트를 작성중입니다",
+  endTime: "2099-07-07T12:55:35.93718",
+  likeCount: 0,
+  peopleCount: 0,
+  songCount: 0,
+  commentCount: 0,
+  songs: [],
+  liked: false
+}
+
 export const getTopEmotionBands = () =>
   axios
     .get("http://144.24.81.195:8080/api/emotion-bands")
@@ -8,17 +22,3 @@ export const getTopEmotionBands = () =>
       return Response.data;
     })
     .catch((error) => console.error(error));
-
-export const toggleLike = (bandId: number, memberId: number) => {
-  // API 명세에 따라 요청 Body는 비어있습니다.
-  const payload = {};
-  return axios
-    .post(
-      `http://144.24.81.195:8080/api/emotion-bands/${bandId}/like`,
-      payload,
-      {
-        params: { memberId }, // API 명세에 따라 memberId를 쿼리 파라미터로 전송
-      }
-    )
-    .then((response) => response.data);
-};
